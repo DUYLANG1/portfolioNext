@@ -1,36 +1,180 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# DUYLANG Portfolio
 
-## Getting Started
+A modern, responsive portfolio website built with Next.js 15, shadcn/ui, and Tailwind CSS.
 
-First, run the development server:
+## 🚀 Tech Stack
+
+- **Framework**: Next.js 15 with App Router
+- **Styling**: Tailwind CSS v4 with shadcn/ui components
+- **UI Components**: Radix UI primitives
+- **Animations**: Framer Motion
+- **TypeScript**: Full type safety
+- **Icons**: Lucide React
+- **Package Manager**: pnpm
+
+## ✨ Features
+
+- **Responsive Design**: Optimized for all device sizes
+- **Dark/Light Mode**: Toggle between themes
+- **Smooth Animations**: Framer Motion powered interactions
+- **Modern UI**: shadcn/ui components with clean design
+- **SEO Optimized**: Next.js optimization features
+- **Fast Loading**: Turbopack for development and optimized builds
+- **Type Safe**: Full TypeScript implementation
+
+## 🏃‍♂️ Quick Start
+
+### Prerequisites
+
+- Node.js 18+
+- pnpm (recommended) or npm
+
+### Installation
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
+# Clone the repository
+git clone <your-repo-url>
+cd myportfolio
+
+# Install dependencies
+pnpm install
+
+# Run development server
 pnpm dev
-# or
-bun dev
+
+# Build for production
+pnpm build
+
+# Start production server
+pnpm start
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 📁 Project Structure
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```
+src/
+├── app/                    # Next.js App Router
+│   ├── globals.css         # Global styles and Tailwind
+│   ├── layout.tsx          # Root layout
+│   └── page.tsx            # Home page
+├── components/
+│   ├── ui/                 # shadcn/ui components
+│   ├── layout/             # Layout components
+│   │   └── navigation.tsx  # Navigation bar
+│   └── sections/           # Page sections
+│       ├── hero-section.tsx
+│       ├── experience-section.tsx
+│       ├── skills-section.tsx
+│       └── contact-section.tsx
+├── lib/
+│   └── utils.ts            # Utility functions
+└── assets/                 # Static assets
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🎨 Customization
 
-## Learn More
+### Colors
 
-To learn more about Next.js, take a look at the following resources:
+The portfolio uses a neutral color scheme that can be customized in `globals.css`:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Content
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Update your personal information in:
 
-## Deploy on Vercel
+- `src/components/sections/hero-section.tsx` - About information
+- `src/components/sections/experience-section.tsx` - Work experience
+- `src/components/sections/skills-section.tsx` - Skills and technologies
+- `src/components/sections/contact-section.tsx` - Contact links
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Avatar
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Replace `public/avatar.svg` with your own profile image.
+
+## 🚀 Deployment
+
+This portfolio is optimized for deployment on:
+
+- **Vercel** (Recommended): Connect your GitHub repository
+- **Netlify**: Drag and drop the `dist` folder
+- **GitHub Pages**: Build and deploy to gh-pages branch
+
+### Environment Variables
+
+Create a `.env.local` file for any environment-specific variables:
+
+```env
+# Example
+NEXT_PUBLIC_SITE_URL=https://your-domain.com
+```
+
+## 📱 Sections Overview
+
+### Hero Section
+
+- Professional introduction
+- Animated profile avatar
+- Key skills highlight
+
+### Experience Section
+
+- Work history with companies
+- Position titles and dates
+- Current/past job indicators
+
+### Skills Section
+
+- Categorized technology skills
+- Interactive skill cards
+- Animated skill showcase
+
+### Contact Section
+
+- Social media links
+- Professional contact information
+- Location information
+
+## 🛠 Development
+
+### Adding New Sections
+
+1. Create a new component in `src/components/sections/`
+2. Import and add to `src/app/page.tsx`
+3. Add navigation link in `src/components/layout/navigation.tsx`
+
+### Adding New UI Components
+
+```bash
+# Add shadcn/ui components
+npx shadcn@latest add [component-name]
+```
+
+## 📋 Scripts
+
+- `pnpm dev` - Start development server
+- `pnpm build` - Build for production
+- `pnpm start` - Start production server
+- `pnpm lint` - Run ESLint
+- `pnpm lint:fix` - Fix ESLint issues
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Run tests and linting
+5. Submit a pull request
+
+## 📄 License
+
+This project is licensed under the MIT License.
+
+## 🙏 Acknowledgments
+
+- [shadcn/ui](https://ui.shadcn.com/) for the beautiful components
+- [Radix UI](https://www.radix-ui.com/) for accessible primitives
+- [Framer Motion](https://www.framer.com/motion/) for smooth animations
+- [Lucide](https://lucide.dev/) for the icon set
+
+---
+
+Built with ❤️ by DUYLANG
