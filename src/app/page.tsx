@@ -1,8 +1,11 @@
 import { Navigation } from "@/components/layout/navigation";
-import { HeroSection } from "@/components/sections/hero-section";
+// Replaced hero with header + introduction for closer parity to old site
+import { HeaderSection } from "@/components/sections/header-section";
+import { IntroductionSection } from "@/components/sections/introduction-section";
 import { ExperienceSection } from "@/components/sections/experience-section";
 import { SkillsSection } from "@/components/sections/skills-section";
 import { ContactSection } from "@/components/sections/contact-section";
+import { EducationSection } from "@/components/sections/education-section";
 
 export default function Home() {
   return (
@@ -10,12 +13,16 @@ export default function Home() {
       <Navigation />
 
       <main>
-        <div id="hero">
-          <HeroSection />
-        </div>
+        <HeaderSection />
+
+        <IntroductionSection />
 
         <div id="experience">
           <ExperienceSection />
+        </div>
+
+        <div id="education">
+          <EducationSection />
         </div>
 
         <div id="skills">

@@ -1,85 +1,74 @@
 "use client";
-
-import { Card, CardHeader, CardTitle } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
 import { motion } from "framer-motion";
-import { Calendar, Building2 } from "lucide-react";
-
-const experiences = [
-  {
-    title: "ReactJS Developer",
-    company: "FPT Software",
-    period: "November 2024 - Present",
-    current: true,
-  },
-  {
-    title: "SAP ABAP Developer",
-    company: "FPT Software",
-    period: "December 2023 - November 2024",
-    current: false,
-  },
-];
+import { GlowCard } from "@/components/ui/glow-card";
+import Image from "next/image";
+import { experiences } from "@/lib/data";
+import { Briefcase } from "lucide-react";
 
 export function ExperienceSection() {
   return (
-    <section className="py-20 px-4">
-      <div className="max-w-4xl mx-auto">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-          className="text-center mb-16"
-        >
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            Working Experiences
-          </h2>
-          <div className="w-24 h-1 bg-primary mx-auto rounded-full" />
-        </motion.div>
-
-        <div className="space-y-6">
-          {experiences.map((exp, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
-              viewport={{ once: true }}
-            >
-              <Card className="hover:shadow-lg transition-shadow duration-300">
-                <CardHeader>
-                  <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-                    <div className="space-y-2">
-                      <CardTitle className="text-xl flex items-center gap-2">
-                        <Building2 className="h-5 w-5 text-primary" />
-                        {exp.title}
-                      </CardTitle>
-                      <p className="text-muted-foreground font-medium">
-                        {exp.company}
-                      </p>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <Calendar className="h-4 w-4 text-muted-foreground" />
-                      <Badge
-                        variant={exp.current ? "default" : "secondary"}
-                        className="whitespace-nowrap"
-                      >
-                        {exp.period}
-                      </Badge>
-                      {exp.current && (
-                        <Badge
-                          variant="outline"
-                          className="text-green-600 border-green-600"
-                        >
-                          Current
-                        </Badge>
-                      )}
-                    </div>
-                  </div>
-                </CardHeader>
-              </Card>
-            </motion.div>
-          ))}
+    <section className="py-24 px-4" id="experience">
+      <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-start">
+        <div>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="mb-10"
+          >
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 flex items-center gap-3">
+              <Briefcase className="h-8 w-8 text-primary" /> Experience
+            </h2>
+            <div className="w-24 h-1 bg-primary rounded-full" />
+          </motion.div>
+          <div className="flex flex-col gap-6">
+            {experiences.map((exp, i) => (
+              <GlowCard key={exp.id} className="p-5 relative overflow-hidden">
+                <motion.div
+                  initial={{ opacity: 0, y: 12 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: i * 0.05 }}
+                  viewport={{ once: true }}
+                  className="relative z-10"
+                >
+                  <p className="text-sm text-primary font-semibold mb-1">
+                    {exp.period}
+                  </p>
+                  <h3 className="text-lg font-semibold">{exp.title}</h3>
+                  <p className="text-muted-foreground text-sm">{exp.company}</p>
+                  {exp.current && (
+                    <span className="mt-2 inline-block text-xs px-2 py-0.5 rounded bg-primary/10 text-primary border border-primary/20">
+                      Current
+                    </span>
+                  )}
+                </motion.div>
+                <Image
+                  src="/assets/blur-23.svg"
+                  alt="blur"
+                  fill
+                  className="object-cover opacity-40 pointer-events-none select-none"
+                />
+              </GlowCard>
+            ))}
+          </div>
+        </div>
+        <div className="sticky top-28 hidden md:block">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="relative"
+          >
+            <Image
+              src="/assets/hero.svg"
+              alt="Development"
+              width={600}
+              height={600}
+              className="w-full h-auto"
+            />
+          </motion.div>
         </div>
       </div>
     </section>

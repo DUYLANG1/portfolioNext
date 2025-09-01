@@ -4,9 +4,11 @@ import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 
 import { Moon, Sun } from "lucide-react";
-
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 export function Navigation() {
   const [isScrolled, setIsScrolled] = useState(false);
+  const pathname = usePathname();
   const [isDark, setIsDark] = useState(false);
 
   useEffect(() => {
@@ -18,17 +20,26 @@ export function Navigation() {
   }, []);
 
   useEffect(() => {
-    if (isDark) {
-      document.documentElement.classList.add("dark");
+    // Read persisted or system preference if first mount
+    const stored = localStorage.getItem("theme");
+    if (!stored) {
+      const prefersDark = window.matchMedia(
+        "(prefers-color-scheme: dark)"
+      ).matches;
+      setIsDark(prefersDark);
+      document.documentElement.classList.toggle("dark", prefersDark);
     } else {
-      document.documentElement.classList.remove("dark");
+      setIsDark(stored === "dark");
+      document.documentElement.classList.toggle("dark", stored === "dark");
     }
-  }, [isDark]);
+  }, []);
 
-  const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId);
-    element?.scrollIntoView({ behavior: "smooth" });
-  };
+  useEffect(() => {
+    document.documentElement.classList.toggle("dark", isDark);
+    try {
+      localStorage.setItem("theme", isDark ? "dark" : "light");
+    } catch {}
+  }, [isDark]);
 
   return (
     <motion.nav
@@ -42,42 +53,38 @@ export function Navigation() {
     >
       <div className="max-w-6xl mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
-          <motion.div
-            whileHover={{ scale: 1.05 }}
-            className="font-bold text-xl cursor-pointer"
-            onClick={() => scrollToSection("hero")}
-          >
-            DUYLANG
-          </motion.div>
+          <div className="flex gap-3">
+            <Link href="/">
+              <motion.div
+                whileHover={{ scale: 1.05 }}
+                className="font-bold text-xl cursor-pointer"
+              >
+                DUYLANG
+              </motion.div>
+            </Link>
+            <Link
+              href="/"
+              className={`transition-colors ${
+                pathname === "/"
+                  ? "text-foreground font-medium"
+                  : "text-muted-foreground hover:text-foreground"
+              }`}
+            >
+              Home
+            </Link>
+            <Link
+              href="/projects"
+              className={`transition-colors ${
+                pathname === "/projects"
+                  ? "text-foreground font-medium"
+                  : "text-muted-foreground hover:text-foreground"
+              }`}
+            >
+              Projects
+            </Link>
+          </div>
 
           <div className="flex items-center gap-6">
-            <div className="hidden md:flex items-center gap-6">
-              <button
-                onClick={() => scrollToSection("hero")}
-                className="text-muted-foreground hover:text-foreground transition-colors"
-              >
-                About
-              </button>
-              <button
-                onClick={() => scrollToSection("experience")}
-                className="text-muted-foreground hover:text-foreground transition-colors"
-              >
-                Experience
-              </button>
-              <button
-                onClick={() => scrollToSection("skills")}
-                className="text-muted-foreground hover:text-foreground transition-colors"
-              >
-                Skills
-              </button>
-              <button
-                onClick={() => scrollToSection("contact")}
-                className="text-muted-foreground hover:text-foreground transition-colors"
-              >
-                Contact
-              </button>
-            </div>
-
             <button
               onClick={() => setIsDark(!isDark)}
               className="p-2 rounded-lg hover:bg-muted transition-colors"
