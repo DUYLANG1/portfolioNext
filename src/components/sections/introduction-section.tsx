@@ -2,41 +2,31 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import React from "react";
+import {
+  useReliableVisibility,
+  createReliableAnimationProps,
+} from "@/hooks/useReliableVisibility";
 
 export function IntroductionSection() {
+  const isVisible = useReliableVisibility(100);
+
   return (
     <section className="py-24 px-4">
-      <div className="max-w-5xl mx-auto grid md:grid-cols-4 gap-10 items-center">
+      <div className="max-w-5xl mx-auto flex gap-32 items-center">
         <motion.div
-          initial={{ opacity: 0, scale: 0.9 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-          className="md:col-span-1 hidden md:block"
-        >
-          <div className="relative w-48 h-48 cursor-pointer">
-            <Image
-              src="/avatar.svg"
-              alt="Avatar"
-              fill
-              className="object-contain"
-            />
-          </div>
-        </motion.div>
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-          className="prose dark:prose-invert md:col-span-3 max-w-none"
+          {...createReliableAnimationProps(isVisible, {
+            initial: { opacity: 0, y: 20 },
+            animate: { opacity: 1, y: 0 },
+            transition: { duration: 0.6, delay: 0.2 },
+          })}
+          className="prose dark:prose-invert"
         >
           <h2 className="text-3xl font-semibold">
             <span className="text-primary">About</span> Me
           </h2>
           <p>
             I have a strong passion for learning and exploring various fields,
-            especially programming. I enjoy creating modern web applications and
-            continuously improving my skills in JavaScript frameworks.
+            especially programming.
           </p>
           <p>
             Fluent in <strong>JavaScript / TypeScript</strong> and experienced
@@ -48,6 +38,23 @@ export function IntroductionSection() {
             I love crafting engaging UI, optimizing performance, and building
             products that solve real problems.
           </p>
+        </motion.div>
+        <motion.div
+          {...createReliableAnimationProps(isVisible, {
+            initial: { opacity: 0, scale: 0.9 },
+            animate: { opacity: 1, scale: 1 },
+            transition: { duration: 0.6 },
+          })}
+          className="hidden md:block"
+        >
+          <div className="relative w-48 h-48 cursor-pointer">
+            <Image
+              src="/assets/avatar.svg"
+              alt="Avatar"
+              fill
+              className="object-contain"
+            />
+          </div>
         </motion.div>
       </div>
     </section>

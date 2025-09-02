@@ -2,6 +2,7 @@
 
 import { Card, CardContent } from "@/components/ui/card";
 import { motion } from "framer-motion";
+import { AnimationLottie } from "../common/animation-lottie";
 
 // Map skill names to actual file names present in /public/assets/skillsSvg
 const skillFiles: Record<string, string> = {
@@ -42,6 +43,12 @@ export function SkillsSection() {
           <h2 className="text-3xl md:text-4xl font-bold mb-4 uppercase tracking-wider">
             SKILLS
           </h2>
+          <AnimationLottie
+            src="/assets/lottie/skills.json"
+            className="w-full max-w-xl mx-auto"
+            width="10%"
+            loop
+          />
           <div className="w-24 h-1 bg-primary mx-auto rounded-full" />
         </motion.div>
 

@@ -4,7 +4,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { motion } from "framer-motion";
 import { AnimationLottie } from "@/components/common/animation-lottie";
-import { CONTACT_LOTTIE } from "@/../public/assets/lottie/string/contact";
+import { CONTACT_LOTTIE } from "@/../public/assets/lottie/string/contactlottie";
 import React from "react";
 import { MapPin } from "lucide-react";
 
@@ -75,7 +75,10 @@ export function ContactSection() {
   ];
 
   return (
-    <section className="py-24 px-4 bg-gradient-to-b from-background via-muted/30 to-background">
+    <section
+      id="contact"
+      className="py-24 px-4 bg-gradient-to-b from-background via-muted/30 to-background scroll-mt-32"
+    >
       <div className="max-w-6xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}

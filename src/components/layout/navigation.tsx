@@ -2,14 +2,22 @@
 
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
+import { useRouter } from "next/navigation";
 
-import { Moon, Sun } from "lucide-react";
+import { Moon, Sun, Loader2 } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 export function Navigation() {
   const [isScrolled, setIsScrolled] = useState(false);
   const pathname = usePathname();
   const [isDark, setIsDark] = useState(false);
+  const [isNavigating, setIsNavigating] = useState(false);
+  const router = useRouter();
+
+  // Reset navigation state when pathname changes
+  useEffect(() => {
+    setIsNavigating(false);
+  }, [pathname]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -41,6 +49,16 @@ export function Navigation() {
     } catch {}
   }, [isDark]);
 
+  const handleNavigation = (href: string) => {
+    if (pathname !== href) {
+      setIsNavigating(true);
+      router.push(href);
+      // Reset navigation state after a reasonable delay
+      // This ensures UI doesn't get stuck in loading state
+      setTimeout(() => setIsNavigating(false), 800);
+    }
+  };
+
   return (
     <motion.nav
       initial={{ y: -100 }}
@@ -62,26 +80,31 @@ export function Navigation() {
                 DUYLANG
               </motion.div>
             </Link>
-            <Link
-              href="/"
+            <button
+              onClick={() => handleNavigation("/")}
               className={`transition-colors ${
                 pathname === "/"
                   ? "text-foreground font-medium"
                   : "text-muted-foreground hover:text-foreground"
               }`}
+              disabled={isNavigating}
             >
               Home
-            </Link>
-            <Link
-              href="/projects"
-              className={`transition-colors ${
+            </button>
+            <button
+              onClick={() => handleNavigation("/projects")}
+              className={`flex items-center gap-1 transition-colors ${
                 pathname === "/projects"
                   ? "text-foreground font-medium"
                   : "text-muted-foreground hover:text-foreground"
               }`}
+              disabled={isNavigating}
             >
               Projects
-            </Link>
+              {isNavigating && pathname !== "/projects" && (
+                <Loader2 className="h-3 w-3 animate-spin" />
+              )}
+            </button>
           </div>
 
           <div className="flex items-center gap-6">

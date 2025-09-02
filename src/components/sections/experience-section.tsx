@@ -4,11 +4,20 @@ import { GlowCard } from "@/components/ui/glow-card";
 import Image from "next/image";
 import { experiences } from "@/lib/data";
 import { Briefcase } from "lucide-react";
+import { AnimationLottie } from "@/components/common/animation-lottie";
 
 export function ExperienceSection() {
   return (
     <section className="py-24 px-4" id="experience">
       <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-start">
+        <div className="sticky top-28 hidden md:block">
+          <AnimationLottie
+            src="/assets/lottie/experience.json"
+            className="w-full max-w-xl mx-auto"
+            width="100%"
+            loop
+          />
+        </div>
         <div>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -52,23 +61,6 @@ export function ExperienceSection() {
               </GlowCard>
             ))}
           </div>
-        </div>
-        <div className="sticky top-28 hidden md:block">
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-            className="relative"
-          >
-            <Image
-              src="/assets/hero.svg"
-              alt="Development"
-              width={600}
-              height={600}
-              className="w-full h-auto"
-            />
-          </motion.div>
         </div>
       </div>
     </section>

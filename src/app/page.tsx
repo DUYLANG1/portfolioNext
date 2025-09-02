@@ -6,6 +6,7 @@ import { ExperienceSection } from "@/components/sections/experience-section";
 import { SkillsSection } from "@/components/sections/skills-section";
 import { ContactSection } from "@/components/sections/contact-section";
 import { EducationSection } from "@/components/sections/education-section";
+import { HobbiesSection } from "@/components/sections/hobbies-section";
 
 export default function Home() {
   return (
@@ -14,24 +15,12 @@ export default function Home() {
 
       <main>
         <HeaderSection />
-
         <IntroductionSection />
-
-        <div id="experience">
-          <ExperienceSection />
-        </div>
-
-        <div id="education">
-          <EducationSection />
-        </div>
-
-        <div id="skills">
-          <SkillsSection />
-        </div>
-
-        <div id="contact">
-          <ContactSection />
-        </div>
+        <ExperienceSection />
+        <SkillsSection />
+        <EducationSection />
+        <HobbiesSection />
+        <ContactSection />
       </main>
 
       <footer className="py-8 px-4 border-t">

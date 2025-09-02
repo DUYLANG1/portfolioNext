@@ -64,20 +64,10 @@ export const projects: ProjectItem[] = [
     title: "Portfolio (This Site)",
     description:
       "Modern portfolio built with Next.js App Router, Tailwind & shadcn style components.",
-    github: "https://github.com/DUYLANG1/portfolio-modern", // placeholder
-    demo: "/",
+    github: "https://github.com/DUYLANG1/myportfolio", 
+    demo: "#",
     image: "/assets/hero.svg",
     tags: ["Next.js", "Framer Motion", "Lottie"],
-  },
-  {
-    id: 3,
-    title: "Design System Sandbox",
-    description:
-      "Reusable component primitives and tokens for rapid product prototyping.",
-    github: "#",
-    demo: "#",
-    image: "/assets/blur-23.svg",
-    tags: ["UI", "Design System", "Accessibility"],
   },
 ];
 

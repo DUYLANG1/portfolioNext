@@ -5,7 +5,19 @@ import { Globe } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Navigation } from "@/components/layout/navigation";
 import { motion } from "framer-motion";
+import { useState, useEffect } from "react";
+import { AnimationLottie } from "@/components/common/animation-lottie";
+import {
+  useReliableVisibility,
+  createReliableAnimationProps,
+} from "@/hooks/useReliableVisibility";
+import { PROJECT_LOTTIE } from "@/../public/assets/lottie/string/projectlottie";
 
+const projectLottie = JSON.parse(PROJECT_LOTTIE);
+const blob = new Blob([JSON.stringify(projectLottie)], {
+  type: "application/json",
+});
+const blobUrl = URL.createObjectURL(blob);
 function GitHubIcon({ className = "h-6 w-6" }: { className?: string }) {
   return (
     <svg
@@ -24,18 +36,42 @@ function GitHubIcon({ className = "h-6 w-6" }: { className?: string }) {
 }
 
 export function ProjectsGrid() {
+  const isVisible = useReliableVisibility(100);
+  const [cardsReady, setCardsReady] = useState(false);
+
+  useEffect(() => {
+    // Ensure cards are ready for animation
+    const cardsTimer = setTimeout(() => {
+      setCardsReady(true);
+    }, 200);
+
+    return () => clearTimeout(cardsTimer);
+  }, []);
+
   return (
     <div className="min-h-screen">
       <Navigation />
       <main className="pt-32 pb-24 px-4">
         <div className="max-w-6xl mx-auto">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
+            {...createReliableAnimationProps(isVisible, {
+              initial: { opacity: 0, y: 20 },
+              animate: { opacity: 1, y: 0 },
+              transition: { duration: 0.6 },
+            })}
             className="text-center mb-20"
           >
-            <h1 className="text-4xl font-bold mb-4">All Projects</h1>
+            <h1 className="text-4xl font-bold mb-4 flex items-center justify-center gap-3">
+              All Projects
+              <span className="inline-block w-10 h-10">
+                <AnimationLottie
+                  src={blobUrl}
+                  width={40}
+                  loop
+                  className="pointer-events-none select-none"
+                />
+              </span>
+            </h1>
             <p className="text-muted-foreground max-w-2xl mx-auto">
               A curated selection of things I&apos;ve built, experimented with,
               or shipped.
@@ -43,76 +79,82 @@ export function ProjectsGrid() {
           </motion.div>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
             {projects.map((p, i) => (
-              <GlowCard
+              <motion.div
                 key={p.id}
-                className="group relative overflow-hidden border bg-background/60 backdrop-blur-sm flex flex-col"
+                {...createReliableAnimationProps(isVisible, {
+                  initial: { opacity: 0, y: 12 },
+                  animate: {
+                    opacity: cardsReady ? 1 : 0,
+                    y: cardsReady ? 0 : 12,
+                  },
+                  transition: {
+                    duration: 0.5,
+                    delay: cardsReady ? i * 0.1 : 0,
+                  },
+                })}
               >
-                <motion.div
-                  initial={{ opacity: 0, y: 12 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: i * 0.05 }}
-                  viewport={{ once: true }}
-                  className="flex flex-col gap-4 p-5 flex-1"
-                >
-                  {p.image && (
-                    <div className="relative h-40 rounded-md overflow-hidden border bg-muted/40">
-                      {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img
-                        src={p.image}
-                        alt={p.title}
-                        className="object-cover w-full h-full transition-transform duration-500 group-hover:scale-105"
-                        loading="lazy"
-                      />
-                      <div className="absolute inset-0 pointer-events-none bg-gradient-to-t from-background/80 via-background/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                <GlowCard className="group relative overflow-hidden border bg-background/60 backdrop-blur-sm flex flex-col h-full">
+                  <div className="flex flex-col gap-4 p-5 flex-1">
+                    {p.image && (
+                      <div className="relative h-40 rounded-md overflow-hidden border bg-muted/40">
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                        <img
+                          src={p.image}
+                          alt={p.title}
+                          className="object-cover w-full h-full transition-transform duration-500 group-hover:scale-105"
+                          loading="lazy"
+                        />
+                        <div className="absolute inset-0 pointer-events-none bg-gradient-to-t from-background/80 via-background/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                      </div>
+                    )}
+                    <div>
+                      <Badge variant="secondary" className="mb-2">
+                        #{p.id}
+                      </Badge>
+                      <h3 className="font-semibold text-lg mb-2 group-hover:text-primary transition-colors leading-snug">
+                        {p.title}
+                      </h3>
+                      <p className="text-sm text-muted-foreground leading-relaxed line-clamp-3">
+                        {p.description}
+                      </p>
                     </div>
-                  )}
-                  <div>
-                    <Badge variant="secondary" className="mb-2">
-                      #{p.id}
-                    </Badge>
-                    <h3 className="font-semibold text-lg mb-2 group-hover:text-primary transition-colors leading-snug">
-                      {p.title}
-                    </h3>
-                    <p className="text-sm text-muted-foreground leading-relaxed line-clamp-3">
-                      {p.description}
-                    </p>
+                    {p.tags && (
+                      <div className="flex flex-wrap gap-2 mt-auto">
+                        {p.tags.map((t) => (
+                          <span
+                            key={t}
+                            className="px-2 py-0.5 rounded bg-primary/10 text-primary text-[10px] font-medium tracking-wide border border-primary/20"
+                          >
+                            {t}
+                          </span>
+                        ))}
+                      </div>
+                    )}
                   </div>
-                  {p.tags && (
-                    <div className="flex flex-wrap gap-2 mt-auto">
-                      {p.tags.map((t) => (
-                        <span
-                          key={t}
-                          className="px-2 py-0.5 rounded bg-primary/10 text-primary text-[10px] font-medium tracking-wide border border-primary/20"
-                        >
-                          {t}
-                        </span>
-                      ))}
-                    </div>
-                  )}
-                </motion.div>
-                <div className="absolute inset-0 bg-background/90 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-4 text-sm">
-                  {p.github && (
-                    <a
-                      href={p.github}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1 px-3 py-1.5 rounded-md bg-primary text-primary-foreground text-xs font-medium shadow hover:bg-primary/90"
-                    >
-                      <GitHubIcon className="h-4 w-4" /> Code
-                    </a>
-                  )}
-                  {p.demo && (
-                    <a
-                      href={p.demo}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1 px-3 py-1.5 rounded-md border text-xs font-medium hover:bg-accent hover:text-accent-foreground"
-                    >
-                      <Globe className="h-4 w-4" /> Demo
-                    </a>
-                  )}
-                </div>
-              </GlowCard>
+                  <div className="absolute inset-0 bg-background/90 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-4 text-sm">
+                    {p.github && (
+                      <a
+                        href={p.github}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1 px-3 py-1.5 rounded-md bg-primary text-primary-foreground text-xs font-medium shadow hover:bg-primary/90"
+                      >
+                        <GitHubIcon className="h-4 w-4" /> Code
+                      </a>
+                    )}
+                    {p.demo && (
+                      <a
+                        href={p.demo}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1 px-3 py-1.5 rounded-md border text-xs font-medium hover:bg-accent hover:text-accent-foreground"
+                      >
+                        <Globe className="h-4 w-4" /> Demo
+                      </a>
+                    )}
+                  </div>
+                </GlowCard>
+              </motion.div>
             ))}
           </div>
         </div>

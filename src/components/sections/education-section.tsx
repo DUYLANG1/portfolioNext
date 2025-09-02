@@ -9,6 +9,13 @@ export function EducationSection() {
   return (
     <section className="py-24 px-4 bg-muted/30" id="education">
       <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-start">
+        <div className="sticky top-28 hidden md:block">
+          <AnimationLottie
+            src={"/assets/lottie/education.json"}
+            className="mx-auto"
+            width={420}
+          />
+        </div>
         <div>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -50,14 +57,6 @@ export function EducationSection() {
               </GlowCard>
             ))}
           </div>
-        </div>
-        <div className="sticky top-28 hidden md:block">
-          <AnimationLottie
-            // Fallback to coding.json if education.json empty
-            src={"/assets/lottie/education.json"}
-            className="mx-auto"
-            width={420}
-          />
         </div>
       </div>
     </section>

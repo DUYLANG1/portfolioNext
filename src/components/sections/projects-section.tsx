@@ -38,18 +38,18 @@ export function ProjectsSection() {
           <div className="w-24 h-1 bg-primary mx-auto rounded-full" />
         </motion.div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 auto-rows-fr">
           {projects.map((p, i) => (
             <GlowCard
               key={p.id}
-              className="group relative overflow-hidden border bg-background/60 backdrop-blur-sm flex flex-col"
+              className="group relative overflow-hidden border bg-background/60 backdrop-blur-sm flex flex-col h-full"
             >
               <motion.div
                 initial={{ opacity: 0, y: 12 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: i * 0.05 }}
                 viewport={{ once: true }}
-                className="flex flex-col gap-4 p-5 flex-1"
+                className="flex flex-col gap-4 p-5 flex-1 h-full"
               >
                 {p.image && (
                   <div className="relative h-36 rounded-md overflow-hidden border bg-muted/40">
@@ -63,29 +63,29 @@ export function ProjectsSection() {
                     <div className="absolute inset-0 pointer-events-none bg-gradient-to-t from-background/80 via-background/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
                   </div>
                 )}
-                <div>
-                  <Badge variant="secondary" className="mb-2">
+                <div className="flex-1 flex flex-col">
+                  <Badge variant="secondary" className="mb-2 w-fit">
                     #{p.id}
                   </Badge>
                   <h3 className="font-semibold text-lg mb-2 group-hover:text-primary transition-colors leading-snug">
                     {p.title}
                   </h3>
-                  <p className="text-sm text-muted-foreground leading-relaxed line-clamp-3">
+                  <p className="text-sm text-muted-foreground leading-relaxed flex-1 mb-4">
                     {p.description}
                   </p>
+                  {p.tags && (
+                    <div className="flex flex-wrap gap-2 mt-auto">
+                      {p.tags.map((t) => (
+                        <span
+                          key={t}
+                          className="px-2 py-0.5 rounded bg-primary/10 text-primary text-[10px] font-medium tracking-wide border border-primary/20"
+                        >
+                          {t}
+                        </span>
+                      ))}
+                    </div>
+                  )}
                 </div>
-                {p.tags && (
-                  <div className="flex flex-wrap gap-2 mt-auto">
-                    {p.tags.map((t) => (
-                      <span
-                        key={t}
-                        className="px-2 py-0.5 rounded bg-primary/10 text-primary text-[10px] font-medium tracking-wide border border-primary/20"
-                      >
-                        {t}
-                      </span>
-                    ))}
-                  </div>
-                )}
               </motion.div>
               <div className="absolute inset-0 bg-background/90 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-4 text-sm">
                 {p.github && (
