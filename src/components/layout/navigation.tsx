@@ -53,16 +53,13 @@ export function Navigation() {
     if (pathname !== href) {
       setIsNavigating(true);
       router.push(href);
-      // Reset navigation state after a reasonable delay
-      // This ensures UI doesn't get stuck in loading state
-      setTimeout(() => setIsNavigating(false), 800);
+      // Reset after a short delay to prevent stuck state
+      setTimeout(() => setIsNavigating(false), 500);
     }
   };
 
   return (
-    <motion.nav
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
+    <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled
           ? "bg-background/80 backdrop-blur-md border-b"
@@ -75,29 +72,32 @@ export function Navigation() {
             <Link href="/">
               <motion.div
                 whileHover={{ scale: 1.05 }}
-                className="font-bold text-xl cursor-pointer"
+                className="font-bold text-xl cursor-pointer px-3 py-2 flex items-center"
               >
                 DUYLANG
               </motion.div>
             </Link>
             <button
               onClick={() => handleNavigation("/")}
-              className={`transition-colors ${
+              className={`flex items-center gap-1 px-3 py-2 rounded-lg transition-all ${
                 pathname === "/"
-                  ? "text-foreground font-medium"
-                  : "text-muted-foreground hover:text-foreground"
-              }`}
+                  ? "text-foreground font-medium bg-primary/10 border border-primary/20"
+                  : "text-muted-foreground hover:text-foreground hover:bg-muted/50"
+              } ${isNavigating ? "opacity-50" : ""}`}
               disabled={isNavigating}
             >
               Home
+              {isNavigating && pathname !== "/" && (
+                <Loader2 className="h-3 w-3 animate-spin" />
+              )}
             </button>
             <button
               onClick={() => handleNavigation("/projects")}
-              className={`flex items-center gap-1 transition-colors ${
+              className={`flex items-center gap-1 px-3 py-2 rounded-lg transition-all ${
                 pathname === "/projects"
-                  ? "text-foreground font-medium"
-                  : "text-muted-foreground hover:text-foreground"
-              }`}
+                  ? "text-foreground font-medium bg-primary/10 border border-primary/20"
+                  : "text-muted-foreground hover:text-foreground hover:bg-muted/50"
+              } ${isNavigating ? "opacity-50" : ""}`}
               disabled={isNavigating}
             >
               Projects
@@ -121,6 +121,6 @@ export function Navigation() {
           </div>
         </div>
       </div>
-    </motion.nav>
+    </nav>
   );
 }

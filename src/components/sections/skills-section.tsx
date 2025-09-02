@@ -3,6 +3,7 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { motion } from "framer-motion";
 import { AnimationLottie } from "../common/animation-lottie";
+import Marquee from "react-fast-marquee";
 
 // Map skill names to actual file names present in /public/assets/skillsSvg
 const skillFiles: Record<string, string> = {
@@ -11,7 +12,7 @@ const skillFiles: Record<string, string> = {
   Javascript: "javascript.svg",
   Typescript: "typescript.svg",
   React: "react.svg",
-  "Next JS": "nextJS.svg",
+  "Next JS": "nextjs.svg",
   "Express JS": "expressjs.svg",
   "Nest JS": "nestjs.svg",
   SQL: "mysql.svg",
@@ -32,7 +33,7 @@ const icon = (n: string) => `/assets/skillsSvg/${skillFiles[n]}`;
 export function SkillsSection() {
   return (
     <section className="py-20 px-4 bg-muted/30 overflow-hidden">
-      <div className="max-w-4xl mx-auto">
+      <div className="max-w-6xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -52,29 +53,33 @@ export function SkillsSection() {
           <div className="w-24 h-1 bg-primary mx-auto rounded-full" />
         </motion.div>
 
-        <div className="mb-16 overflow-hidden">
-          <div className="flex animate-scroll gap-6">
-            {[...skillsData, ...skillsData].map((s, i) => (
-              <Card
-                key={i}
-                className="min-w-[140px] hover:shadow-md transition-all duration-300 border bg-background/60 backdrop-blur-sm"
-              >
-                <CardContent className="p-4 flex flex-col items-center gap-3">
-                  <img src={icon(s)} alt={s} className="w-10 h-10" />
-                  <span className="text-xs font-medium">
-                    {s.replace(/JS$/, " JS")}
-                  </span>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-
-        {/* Fades for marquee */}
-        <div className="pointer-events-none select-none">
-          <div className="absolute left-0 top-[var(--skills-offset,0)] w-24 h-40 gradient-blur" />
-          <div className="absolute right-0 top-[var(--skills-offset,0)] w-24 h-40 gradient-blur scale-x-[-1]" />
-        </div>
+        <Marquee
+          speed={150}
+          gradient={true}
+          gradientColor="hsl(var(--muted))"
+          gradientWidth={100}
+          pauseOnHover={true}
+          className="mb-16"
+        >
+          {skillsData.map((s, i) => (
+            <Card
+              key={i}
+              className="mx-3 min-w-[140px] hover:shadow-md transition-shadow border bg-background"
+            >
+              <CardContent className="p-4 flex flex-col items-center gap-3">
+                <img
+                  src={icon(s)}
+                  alt={`${s} logo`}
+                  className="w-10 h-10"
+                  loading="lazy"
+                />
+                <span className="text-xs font-medium">
+                  {s.replace(/JS$/, " JS")}
+                </span>
+              </CardContent>
+            </Card>
+          ))}
+        </Marquee>
       </div>
     </section>
   );

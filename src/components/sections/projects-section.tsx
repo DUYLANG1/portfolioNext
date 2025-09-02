@@ -40,76 +40,68 @@ export function ProjectsSection() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 auto-rows-fr">
           {projects.map((p, i) => (
-            <GlowCard
+            <motion.div
               key={p.id}
-              className="group relative overflow-hidden border bg-background/60 backdrop-blur-sm flex flex-col h-full"
+              initial={{ opacity: 0, y: 12 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: i * 0.05 }}
+              viewport={{ once: true }}
+              className="border rounded-lg bg-background p-5 flex flex-col h-full hover:shadow-lg transition-shadow"
             >
-              <motion.div
-                initial={{ opacity: 0, y: 12 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: i * 0.05 }}
-                viewport={{ once: true }}
-                className="flex flex-col gap-4 p-5 flex-1 h-full"
-              >
-                {p.image && (
-                  <div className="relative h-36 rounded-md overflow-hidden border bg-muted/40">
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img
-                      src={p.image}
-                      alt={p.title}
-                      className="object-cover w-full h-full transition-transform duration-500 group-hover:scale-105"
-                      loading="lazy"
-                    />
-                    <div className="absolute inset-0 pointer-events-none bg-gradient-to-t from-background/80 via-background/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+              {p.image && (
+                <div className="h-36 rounded-md overflow-hidden border bg-muted mb-4">
+                  <img
+                    src={p.image}
+                    alt={p.title}
+                    className="object-cover w-full h-full"
+                    loading="lazy"
+                  />
+                </div>
+              )}
+              <div className="flex-1 flex flex-col">
+                <Badge variant="secondary" className="mb-2 w-fit">
+                  #{p.id}
+                </Badge>
+                <h3 className="font-semibold text-lg mb-2">{p.title}</h3>
+                <p className="text-sm text-muted-foreground flex-1 mb-4">
+                  {p.description}
+                </p>
+                {p.tags && (
+                  <div className="flex flex-wrap gap-2 mb-4">
+                    {p.tags.map((t) => (
+                      <span
+                        key={t}
+                        className="px-2 py-1 rounded bg-primary/10 text-primary text-xs"
+                      >
+                        {t}
+                      </span>
+                    ))}
                   </div>
                 )}
-                <div className="flex-1 flex flex-col">
-                  <Badge variant="secondary" className="mb-2 w-fit">
-                    #{p.id}
-                  </Badge>
-                  <h3 className="font-semibold text-lg mb-2 group-hover:text-primary transition-colors leading-snug">
-                    {p.title}
-                  </h3>
-                  <p className="text-sm text-muted-foreground leading-relaxed flex-1 mb-4">
-                    {p.description}
-                  </p>
-                  {p.tags && (
-                    <div className="flex flex-wrap gap-2 mt-auto">
-                      {p.tags.map((t) => (
-                        <span
-                          key={t}
-                          className="px-2 py-0.5 rounded bg-primary/10 text-primary text-[10px] font-medium tracking-wide border border-primary/20"
-                        >
-                          {t}
-                        </span>
-                      ))}
-                    </div>
+                <div className="flex gap-2">
+                  {p.github && (
+                    <a
+                      href={p.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-1 px-3 py-1.5 rounded bg-primary text-primary-foreground text-xs hover:bg-primary/90 transition-colors"
+                    >
+                      <GitHubIcon className="h-4 w-4" /> Code
+                    </a>
+                  )}
+                  {p.demo && (
+                    <a
+                      href={p.demo}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-1 px-3 py-1.5 rounded border text-xs hover:bg-muted transition-colors"
+                    >
+                      <Globe className="h-4 w-4" /> Demo
+                    </a>
                   )}
                 </div>
-              </motion.div>
-              <div className="absolute inset-0 bg-background/90 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-4 text-sm">
-                {p.github && (
-                  <a
-                    href={p.github}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1 px-3 py-1.5 rounded-md bg-primary text-primary-foreground text-xs font-medium shadow hover:bg-primary/90"
-                  >
-                    <GitHubIcon className="h-4 w-4" /> Code
-                  </a>
-                )}
-                {p.demo && (
-                  <a
-                    href={p.demo}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1 px-3 py-1.5 rounded-md border text-xs font-medium hover:bg-accent hover:text-accent-foreground"
-                  >
-                    <Globe className="h-4 w-4" /> Demo
-                  </a>
-                )}
               </div>
-            </GlowCard>
+            </motion.div>
           ))}
         </div>
       </div>

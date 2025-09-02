@@ -1,24 +1,16 @@
 "use client";
 import { motion } from "framer-motion";
 import Image from "next/image";
-import React from "react";
-import {
-  useReliableVisibility,
-  createReliableAnimationProps,
-} from "@/hooks/useReliableVisibility";
 
 export function IntroductionSection() {
-  const isVisible = useReliableVisibility(100);
-
   return (
     <section className="py-24 px-4">
-      <div className="max-w-5xl mx-auto flex gap-32 items-center">
+      <div className="max-w-6xl mx-auto flex gap-32 items-center">
         <motion.div
-          {...createReliableAnimationProps(isVisible, {
-            initial: { opacity: 0, y: 20 },
-            animate: { opacity: 1, y: 0 },
-            transition: { duration: 0.6, delay: 0.2 },
-          })}
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          viewport={{ once: true }}
           className="prose dark:prose-invert"
         >
           <h2 className="text-3xl font-semibold">
@@ -40,11 +32,10 @@ export function IntroductionSection() {
           </p>
         </motion.div>
         <motion.div
-          {...createReliableAnimationProps(isVisible, {
-            initial: { opacity: 0, scale: 0.9 },
-            animate: { opacity: 1, scale: 1 },
-            transition: { duration: 0.6 },
-          })}
+          initial={{ opacity: 0, scale: 0.9 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
           className="hidden md:block"
         >
           <div className="relative w-48 h-48 cursor-pointer">

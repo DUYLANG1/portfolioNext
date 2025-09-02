@@ -1,5 +1,4 @@
 import { Navigation } from "@/components/layout/navigation";
-// Replaced hero with header + introduction for closer parity to old site
 import { HeaderSection } from "@/components/sections/header-section";
 import { IntroductionSection } from "@/components/sections/introduction-section";
 import { ExperienceSection } from "@/components/sections/experience-section";

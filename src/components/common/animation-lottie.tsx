@@ -1,10 +1,10 @@
 "use client";
 import Lottie from "lottie-react";
 import { motion } from "framer-motion";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 interface AnimationLottieProps {
-  src: string; // public path to JSON
+  src: string;
   width?: string | number;
   loop?: boolean;
   className?: string;
@@ -16,19 +16,17 @@ export function AnimationLottie({
   loop = true,
   className,
 }: AnimationLottieProps) {
-  const [data, setData] = useState<object | null>(null);
+  const [animationData, setAnimationData] = useState(null);
+
   useEffect(() => {
-    let active = true;
     fetch(src)
-      .then((r) => r.json())
-      .then((json) => {
-        if (active) setData(json);
-      })
-      .catch(() => {});
-    return () => {
-      active = false;
-    };
+      .then((res) => res.json())
+      .then(setAnimationData)
+      .catch(() => setAnimationData(null));
   }, [src]);
+
+  if (!animationData) return null;
+
   return (
     <motion.div
       initial={{ scale: 0.9, opacity: 0 }}
@@ -38,9 +36,7 @@ export function AnimationLottie({
       className={className}
       style={{ width }}
     >
-      {data && (
-        <Lottie animationData={data} loop={loop} style={{ width: "100%" }} />
-      )}
+      <Lottie animationData={animationData} loop={loop} />
     </motion.div>
   );
 }

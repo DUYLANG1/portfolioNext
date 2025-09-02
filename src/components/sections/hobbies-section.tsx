@@ -1,6 +1,6 @@
 "use client";
 import { motion } from "framer-motion";
-import { BookOpen, Dumbbell, Globe2, Sparkles } from "lucide-react";
+import { BookOpen, Dumbbell, Globe2 } from "lucide-react";
 import { AnimationLottie } from "../common/animation-lottie";
 
 const hobbies = [
@@ -39,28 +39,26 @@ export function HobbiesSection() {
         </p>
         <div className="w-24 h-1 bg-primary mx-auto mt-6 rounded-full" />
       </motion.div>
-      <div className="max-w-5xl mx-auto flex">
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
+      <div className="max-w-6xl mx-auto flex">
+        <div className="relative grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-4xl">
           {hobbies.map((hobby, i) => (
             <motion.div
               key={hobby.title}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: i * 0.05 }}
+              transition={{ duration: 0.5, delay: i * 0.1 }}
               viewport={{ once: true }}
-              className="group relative p-6 rounded-2xl border bg-background/60 backdrop-blur-sm hover:shadow-lg transition-all overflow-hidden"
+              className={`p-6 rounded-2xl border bg-background hover:shadow-lg transition-shadow h-64 ${
+                i === 0 ? "lg:mt-0" : i === 1 ? "lg:mt-12" : "lg:mt-24"
+              }`}
             >
-              <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-gradient-to-br from-primary/5 via-primary/0 to-primary/10" />
-              <div className="relative z-10 flex flex-col items-start gap-4">
-                <div className="p-3 rounded-xl bg-primary/10 text-primary group-hover:scale-110 transition-transform">
+              <div className="flex flex-col gap-4">
+                <div className="p-3 rounded-xl bg-primary/10 text-primary w-fit">
                   <hobby.icon className="h-6 w-6" />
                 </div>
                 <h3 className="font-semibold text-lg">{hobby.title}</h3>
-                <p className="text-sm text-muted-foreground leading-relaxed">
-                  {hobby.desc}
-                </p>
+                <p className="text-sm text-muted-foreground">{hobby.desc}</p>
               </div>
-              <div className="pointer-events-none absolute -bottom-10 -right-10 w-40 h-40 bg-primary/10 rounded-full blur-2xl group-hover:scale-125 transition-transform" />
             </motion.div>
           ))}
         </div>

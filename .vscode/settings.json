@@ -3,5 +3,6 @@
   "tailwindCSS.experimental.classRegex": [
     ["tw`([^`]*)`", "([^`]*)"],
     ["cva\\(([^)]*)\\)", "'([^']*)'"]
-  ]
+  ],
+  "kiroAgent.configureMCP": "Disabled"
 }
