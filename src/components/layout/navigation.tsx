@@ -7,12 +7,32 @@ import { useRouter } from "next/navigation";
 import { Moon, Sun, Loader2 } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+
 export function Navigation() {
   const [isScrolled, setIsScrolled] = useState(false);
   const pathname = usePathname();
-  const [isDark, setIsDark] = useState(false);
   const [isNavigating, setIsNavigating] = useState(false);
   const router = useRouter();
+  const [isDark, setIsDark] = useState(false);
+
+  useEffect(() => {
+    // Get theme from localStorage or system preference
+    const stored = localStorage.getItem("theme");
+    const systemDark = window.matchMedia(
+      "(prefers-color-scheme: dark)"
+    ).matches;
+    const shouldBeDark = stored === "dark" || (!stored && systemDark);
+
+    setIsDark(shouldBeDark);
+    document.documentElement.classList.toggle("dark", shouldBeDark);
+  }, []);
+
+  const toggleTheme = () => {
+    const newTheme = !isDark;
+    setIsDark(newTheme);
+    document.documentElement.classList.toggle("dark", newTheme);
+    localStorage.setItem("theme", newTheme ? "dark" : "light");
+  };
 
   // Reset navigation state when pathname changes
   useEffect(() => {
@@ -26,28 +46,6 @@ export function Navigation() {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-
-  useEffect(() => {
-    // Read persisted or system preference if first mount
-    const stored = localStorage.getItem("theme");
-    if (!stored) {
-      const prefersDark = window.matchMedia(
-        "(prefers-color-scheme: dark)"
-      ).matches;
-      setIsDark(prefersDark);
-      document.documentElement.classList.toggle("dark", prefersDark);
-    } else {
-      setIsDark(stored === "dark");
-      document.documentElement.classList.toggle("dark", stored === "dark");
-    }
-  }, []);
-
-  useEffect(() => {
-    document.documentElement.classList.toggle("dark", isDark);
-    try {
-      localStorage.setItem("theme", isDark ? "dark" : "light");
-    } catch {}
-  }, [isDark]);
 
   const handleNavigation = (href: string) => {
     if (pathname !== href) {
@@ -109,7 +107,7 @@ export function Navigation() {
 
           <div className="flex items-center gap-6">
             <button
-              onClick={() => setIsDark(!isDark)}
+              onClick={toggleTheme}
               className="p-2 rounded-lg hover:bg-gradient-primary/10 hover:glow-primary transition-all duration-300 border border-transparent hover:border-primary/20"
             >
               {isDark ? (

@@ -83,7 +83,12 @@ export default function RootLayout({
         {children}
         <script
           dangerouslySetInnerHTML={{
-            __html: `try{const d=document.documentElement;const m=localStorage.getItem('theme');if(m){if(m==='dark')d.classList.add('dark');}else if(window.matchMedia('(prefers-color-scheme: dark)').matches){d.classList.add('dark');}}catch(e){}`,
+            __html: `try{
+                    const s=localStorage.getItem('theme');
+                    const d=document.documentElement;
+                    if(s==='dark'||(!s&&matchMedia('(prefers-color-scheme:dark)').matches)) 
+                    d.classList.add('dark');
+                  } catch(e){}`,
           }}
         />
       </body>
