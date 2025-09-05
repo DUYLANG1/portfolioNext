@@ -17,10 +17,11 @@ export function EducationSection() {
       >
         <h2 className="text-3xl md:text-4xl font-bold mb-4 flex flex-col items-center gap-3">
           <span className="flex items-center gap-3">
-            <GraduationCap className="h-8 w-8 text-primary" /> Education
+            <GraduationCap className="h-8 w-8 gradient-text-primary" />
+            <span className="gradient-text-primary">Education</span>
           </span>
         </h2>
-        <div className="w-24 h-1 bg-primary rounded-full mx-auto" />
+        <div className="w-24 h-1 bg-gradient-primary rounded-full mx-auto glow-primary" />
       </motion.div>
 
       <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-start">
@@ -43,18 +44,21 @@ export function EducationSection() {
                   transition={{ duration: 0.5, delay: i * 0.05 }}
                   viewport={{ once: true }}
                 >
-                  <p className="text-sm text-primary font-semibold mb-1">
+                  <p className="text-sm gradient-text-secondary font-semibold mb-2">
                     {ed.period}
                   </p>
-                  <h3 className="text-lg font-semibold leading-snug">
+                  <h3 className="text-lg font-semibold leading-snug mb-1 group-hover:gradient-text-primary transition-all duration-300">
                     {ed.degree}
                   </h3>
-                  <p className="text-muted-foreground text-sm mb-1">
+                  <p className="text-muted-foreground text-sm mb-2">
                     {ed.school}
                   </p>
                   {ed.focus && (
                     <p className="text-xs text-muted-foreground/80">
-                      Focus: {ed.focus}
+                      <span className="gradient-text-accent font-medium">
+                        Focus:
+                      </span>{" "}
+                      {ed.focus}
                     </p>
                   )}
                 </motion.div>

@@ -72,7 +72,7 @@ export function Navigation() {
             <Link href="/">
               <motion.div
                 whileHover={{ scale: 1.05 }}
-                className="font-bold text-xl cursor-pointer px-3 py-2 flex items-center"
+                className="font-bold text-xl cursor-pointer px-3 py-2 flex items-center gradient-text-primary"
               >
                 DUYLANG
               </motion.div>
@@ -81,8 +81,8 @@ export function Navigation() {
               onClick={() => handleNavigation("/")}
               className={`flex items-center gap-1 px-3 py-2 rounded-lg transition-all ${
                 pathname === "/"
-                  ? "text-foreground font-medium bg-primary/10 border border-primary/20"
-                  : "text-muted-foreground hover:text-foreground hover:bg-muted/50"
+                  ? "gradient-text-primary font-medium bg-gradient-primary/10 border border-primary/30 glow-primary"
+                  : "text-muted-foreground hover:gradient-text-secondary hover:bg-muted/50"
               } ${isNavigating ? "opacity-50" : ""}`}
               disabled={isNavigating}
             >
@@ -95,8 +95,8 @@ export function Navigation() {
               onClick={() => handleNavigation("/projects")}
               className={`flex items-center gap-1 px-3 py-2 rounded-lg transition-all ${
                 pathname === "/projects"
-                  ? "text-foreground font-medium bg-primary/10 border border-primary/20"
-                  : "text-muted-foreground hover:text-foreground hover:bg-muted/50"
+                  ? "gradient-text-primary font-medium bg-gradient-primary/10 border border-primary/30 glow-primary"
+                  : "text-muted-foreground hover:gradient-text-secondary hover:bg-muted/50"
               } ${isNavigating ? "opacity-50" : ""}`}
               disabled={isNavigating}
             >
@@ -110,12 +110,12 @@ export function Navigation() {
           <div className="flex items-center gap-6">
             <button
               onClick={() => setIsDark(!isDark)}
-              className="p-2 rounded-lg hover:bg-muted transition-colors"
+              className="p-2 rounded-lg hover:bg-gradient-primary/10 hover:glow-primary transition-all duration-300 border border-transparent hover:border-primary/20"
             >
               {isDark ? (
-                <Sun className="h-5 w-5" />
+                <Sun className="h-5 w-5 gradient-text-accent" />
               ) : (
-                <Moon className="h-5 w-5" />
+                <Moon className="h-5 w-5 gradient-text-primary" />
               )}
             </button>
           </div>

@@ -14,7 +14,8 @@ export function HeaderSection() {
         <div>
           <div className="space-y-6">
             <h1 className="text-4xl md:text-5xl font-bold leading-tight">
-              Hi, I&apos;m <span className="text-primary">DUYLANG</span>
+              Hi, I&apos;m{" "}
+              <span className="gradient-text-primary">DUYLANG</span>
             </h1>
             <p className="text-muted-foreground text-lg">
               <TypeAnimation
@@ -26,7 +27,7 @@ export function HeaderSection() {
                 ]}
                 wrapper="span"
                 speed={50}
-                className="text-primary font-semibold"
+                className="gradient-text-secondary font-semibold"
                 repeat={Infinity}
               />
               <br /> with a passion for building modern, scalable web
@@ -35,20 +36,20 @@ export function HeaderSection() {
             <div className="flex flex-wrap gap-4">
               <Link
                 href="#experience"
-                className="px-6 py-3 rounded-xl bg-primary text-primary-foreground font-semibold hover:bg-primary/90 transition-colors"
+                className="px-6 py-3 rounded-xl btn-primary-enhanced font-semibold"
               >
                 Experience
               </Link>
               <Link
                 href="#contact"
-                className="px-6 py-3 rounded-xl border border-primary/20 hover:border-primary hover:bg-primary/5 font-semibold transition-colors"
+                className="px-6 py-3 rounded-xl border-animated glass font-semibold hover:glow-secondary transition-all duration-300 hover:"
               >
                 Contact Me
               </Link>
               <a
                 href="/assets/CV/VuDuyLang_CV.pdf"
                 download
-                className="px-6 py-3 rounded-xl border border-primary/20 hover:border-primary hover:bg-primary/5 font-semibold transition-colors"
+                className="px-6 py-3 rounded-xl bg-gradient-accent text-primary-foreground font-semibold hover:glow-secondary transition-all duration-300"
               >
                 Download CV
               </a>

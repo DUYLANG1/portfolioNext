@@ -87,8 +87,10 @@ export function ContactSection() {
           viewport={{ once: true }}
           className="text-center mb-20"
         >
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">Get In Touch</h2>
-          <div className="w-24 h-1 bg-primary mx-auto rounded-full mb-6" />
+          <h2 className="text-3xl md:text-4xl font-bold mb-4 gradient-text-primary">
+            Get In Touch
+          </h2>
+          <div className="w-24 h-1 bg-gradient-primary mx-auto rounded-full mb-6 glow-primary" />
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             I&apos;m always interested in new opportunities and collaborations.
             Feel free to reach out if you&apos;d like to work together!
@@ -111,13 +113,15 @@ export function ContactSection() {
                   rel="noopener noreferrer"
                   className="block h-full"
                 >
-                  <Card className="h-full hover:shadow-lg transition-all duration-300 hover:scale-105">
-                    <CardContent className="p-6 text-center space-y-4">
-                      <div className="p-3 rounded-full bg-primary/10 w-fit mx-auto">
-                        <IconComponent className="h-6 w-6 text-primary" />
+                  <Card className="h-full card-enhanced group">
+                    <CardContent className="p-6 text-center space-y-4 relative z-10">
+                      <div className="p-3 rounded-full bg-gradient-primary/20 w-fit mx-auto group-hover:glow-primary transition-all duration-300">
+                        <IconComponent className="h-6 w-6 gradient-text-primary" />
                       </div>
                       <div>
-                        <h3 className="font-semibold text-lg">{link.name}</h3>
+                        <h3 className="font-semibold text-lg group-hover:gradient-text-primary transition-all duration-300">
+                          {link.name}
+                        </h3>
                         <p className="text-muted-foreground text-sm">
                           {link.description}
                         </p>
@@ -131,9 +135,12 @@ export function ContactSection() {
         </div>
 
         <div className="flex flex-col md:flex-row items-center gap-12 md:gap-20 justify-center">
-          <Badge variant="outline" className="text-base px-6 py-3">
-            <MapPin className="h-4 w-4 mr-2" />
-            Vietnam
+          <Badge
+            variant="outline"
+            className="text-base px-6 py-3 bg-gradient-secondary/20 border-primary/30 hover:glow-secondary transition-all duration-300"
+          >
+            <MapPin className="h-4 w-4 mr-2 gradient-text-accent" />
+            <span className="gradient-text-primary font-medium">Vietnam</span>
           </Badge>
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}

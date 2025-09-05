@@ -41,7 +41,7 @@ export function SkillsSection() {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 uppercase tracking-wider">
+          <h2 className="text-3xl md:text-4xl font-bold mb-4 uppercase tracking-wider gradient-text-primary">
             SKILLS
           </h2>
           <AnimationLottie
@@ -50,7 +50,7 @@ export function SkillsSection() {
             width="10%"
             loop
           />
-          <div className="w-24 h-1 bg-primary mx-auto rounded-full" />
+          <div className="w-24 h-1 bg-gradient-primary mx-auto rounded-full glow-primary" />
         </motion.div>
 
         <Marquee
@@ -62,18 +62,18 @@ export function SkillsSection() {
           className="mb-16"
         >
           {skillsData.map((s, i) => (
-            <Card
-              key={i}
-              className="mx-3 min-w-[140px] hover:shadow-md transition-shadow border bg-background"
-            >
+            <Card key={i} className="mx-3 min-w-[140px] card-enhanced group">
               <CardContent className="p-4 flex flex-col items-center gap-3">
-                <img
-                  src={icon(s)}
-                  alt={`${s} logo`}
-                  className="w-10 h-10"
-                  loading="lazy"
-                />
-                <span className="text-xs font-medium">
+                <div className="relative">
+                  <img
+                    src={icon(s)}
+                    alt={`${s} logo`}
+                    className="w-10 h-10 transition-transform duration-300 group-hover:scale-110"
+                    loading="lazy"
+                  />
+                  <div className="absolute inset-0  opacity-0 group-hover:opacity-20 rounded-lg transition-opacity duration-300" />
+                </div>
+                <span className="text-xs font-medium group-hover:gradient-text-primary transition-all duration-300">
                   {s.replace(/JS$/, " JS")}
                 </span>
               </CardContent>
