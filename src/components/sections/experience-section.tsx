@@ -39,7 +39,7 @@ export function ExperienceSection() {
         <div className="order-2 md:order-none">
           <div className="flex flex-col gap-6">
             {experiences.map((exp, i) => (
-              <GlowCard>
+              <GlowCard key={exp.id}>
                 <motion.div
                   key={exp.id}
                   initial={{ opacity: 0, y: 12 }}

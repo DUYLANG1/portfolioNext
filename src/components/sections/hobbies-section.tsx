@@ -48,16 +48,20 @@ export function HobbiesSection() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: i * 0.1 }}
               viewport={{ once: true }}
-              className={`p-6 rounded-2xl border bg-background hover:shadow-lg transition-shadow h-64 ${
+              className={`p-6 rounded-2xl border bg-background hover:shadow-lg transition-all duration-500 h-64 group hover:-rotate-1 hover:bg-primary/5 hover:border-primary/30 ${
                 i === 0 ? "lg:mt-0" : i === 1 ? "lg:mt-12" : "lg:mt-24"
               }`}
             >
               <div className="flex flex-col gap-4">
-                <div className="p-3 rounded-xl bg-primary/10 text-primary w-fit">
-                  <hobby.icon className="h-6 w-6" />
+                <div className="p-3 rounded-xl bg-primary/10 text-primary w-fit group-hover:bg-primary group-hover:text-primary-foreground transition-all duration-300 group-hover:rotate-12">
+                  <hobby.icon className="h-6 w-6 group-hover:scale-110 transition-transform duration-300" />
                 </div>
-                <h3 className="font-semibold text-lg">{hobby.title}</h3>
-                <p className="text-sm text-muted-foreground">{hobby.desc}</p>
+                <h3 className="font-semibold text-lg group-hover:text-primary transition-colors duration-300">
+                  {hobby.title}
+                </h3>
+                <p className="text-sm text-muted-foreground group-hover:text-foreground transition-colors duration-300">
+                  {hobby.desc}
+                </p>
               </div>
             </motion.div>
           ))}

@@ -1,7 +1,7 @@
 "use client";
 import { projects } from "@/lib/data";
 import { GlowCard } from "@/components/ui/glow-card";
-import { Globe, ExternalLink, Star, Calendar } from "lucide-react";
+import { ExternalLink, Calendar } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Navigation } from "@/components/layout/navigation";
 import { AnimationLottie } from "@/components/common/animation-lottie";

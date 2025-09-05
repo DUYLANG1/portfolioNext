@@ -42,17 +42,17 @@ export function HeaderSection() {
               </Link>
               <Link
                 href="#contact"
-                className="px-6 py-3 rounded-xl border-animated glass font-semibold hover:glow-secondary transition-all duration-300 hover:"
+                className="px-6 py-3 rounded-xl border-animated glass font-semibold hover:glow-secondary transition-all duration-300 hover:scale-105 hover:shadow-lg"
               >
                 Contact Me
               </Link>
-              <a
+              <Link
                 href="/assets/CV/VuDuyLang_CV.pdf"
                 download
-                className="px-6 py-3 rounded-xl bg-gradient-accent text-primary-foreground font-semibold hover:glow-secondary transition-all duration-300"
+                className="px-6 py-3 rounded-xl bg-gradient-accent text-primary-foreground font-semibold hover:glow-secondary transition-all duration-300 hover:scale-105 hover:shadow-xl"
               >
                 Download CV
-              </a>
+              </Link>
             </div>
             <div className="relative w-40 h-40 md:hidden">
               <Image
