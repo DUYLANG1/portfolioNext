@@ -1,13 +1,10 @@
 "use client";
 
-import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { motion } from "framer-motion";
 import { AnimationLottie } from "@/components/common/animation-lottie";
-import { CONTACT_LOTTIE } from "@/../public/assets/lottie/string/contactlottie";
 import { MapPin, Send } from "lucide-react";
 import { SectionHeader } from "@/components/ui/section-header";
-import { useEffect, useState } from "react";
 import {
   GitHubIcon,
   LinkedInIcon,
@@ -72,8 +69,8 @@ export function ContactSection() {
                   rel="noopener noreferrer"
                   className="block h-full"
                 >
-                  <Card className="h-full card-enhanced group">
-                    <CardContent className="p-6 text-center space-y-4 relative z-10">
+                  <div className="h-full card-enhanced group bg-card text-card-foreground flex flex-col gap-6 rounded-xl border py-6 shadow-sm">
+                    <div className="px-6 p-6 text-center space-y-4 relative z-10">
                       <div className="p-3 rounded-full bg-gradient-primary/20 w-fit mx-auto group-hover:glow-primary transition-all duration-300">
                         <IconComponent className="h-6 w-6 gradient-text-primary" />
                       </div>
@@ -85,8 +82,8 @@ export function ContactSection() {
                           {link.description}
                         </p>
                       </div>
-                    </CardContent>
-                  </Card>
+                    </div>
+                  </div>
                 </a>
               </motion.div>
             );
@@ -108,36 +105,20 @@ export function ContactSection() {
             viewport={{ once: true }}
             className="w-full md:w-[420px] order-1 md:order-2"
           >
-            {/* Render lottie from string by creating a Blob URL once */}
             <a
               href="https://mail.google.com/mail/u/0/#inbox?compose=DmwnWrRpccpFVcKfsBmqQGcxNvVwSMsPdLfhHfpzfHpGzvvMxCccrMJBlWMdcvLSWSBrvmRQPrlq"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Compose Email"
             >
-              <DynamicContactLottie />
+              <AnimationLottie
+                src="/assets/lottie/contact.json"
+                className="mx-auto"
+              />
             </a>
           </motion.div>
         </div>
       </div>
     </section>
   );
-}
-
-// Convert CONTACT_LOTTIE string to object asynchronously to reuse AnimationLottie
-function DynamicContactLottie() {
-  const [url, setUrl] = useState<string | null>(null);
-  useEffect(() => {
-    try {
-      const obj = JSON.parse(CONTACT_LOTTIE);
-      const blob = new Blob([JSON.stringify(obj)], {
-        type: "application/json",
-      });
-      const blobUrl = URL.createObjectURL(blob);
-      setUrl(blobUrl);
-      return () => URL.revokeObjectURL(blobUrl);
-    } catch {}
-  }, []);
-  if (!url) return null;
-  return <AnimationLottie src={url} className="mx-auto" />;
 }

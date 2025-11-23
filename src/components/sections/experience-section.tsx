@@ -25,14 +25,12 @@ export function ExperienceSection() {
       </motion.div>
 
       <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-start">
-        {/* Animation column */}
         <AnimationLottie
           src="/assets/lottie/experience.json"
           className="hidden md:block w-full max-w-sm md:max-w-md lg:max-w-lg"
           width={420}
           loop
         />
-        {/* Cards column */}
         <div className="flex flex-col gap-4 md:gap-6">
           {experiences.map((experience, index) => (
             <GlowCard key={experience.id}>

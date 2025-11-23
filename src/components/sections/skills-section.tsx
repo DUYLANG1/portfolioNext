@@ -1,6 +1,5 @@
 "use client";
 
-import { Card, CardContent } from "@/components/ui/card";
 import { motion } from "framer-motion";
 import { AnimationLottie } from "../common/animation-lottie";
 import Marquee from "react-fast-marquee";
@@ -65,11 +64,11 @@ export function SkillsSection() {
           className="mb-12 md:mb-16"
         >
           {SKILLS.map((skill, index) => (
-            <Card
+            <div
               key={index}
-              className="mx-3 md:mx-4 min-w-[140px] md:min-w-[160px] card-enhanced group border-none bg-background/40"
+              className="mx-3 md:mx-4 min-w-[140px] md:min-w-[160px] card-enhanced group border-none bg-card text-card-foreground flex flex-col gap-6 rounded-xl border py-6 shadow-sm"
             >
-              <CardContent className="p-4 md:p-6 flex flex-col items-center gap-3 md:gap-4">
+              <div className="px-6 p-4 md:p-6 flex flex-col items-center gap-3 md:gap-4">
                 <div className="relative w-12 h-12 md:w-16 md:h-16 flex items-center justify-center p-2 rounded-xl bg-background/50 group-hover:bg-background/80 transition-colors duration-300">
                   <Image
                     src={getSkillIcon(skill.icon)}
@@ -82,8 +81,8 @@ export function SkillsSection() {
                 <span className="text-xs md:text-sm font-bold tracking-wide group-hover:gradient-text-primary transition-all duration-300">
                   {skill.name.replace(/JS$/, " JS")}
                 </span>
-              </CardContent>
-            </Card>
+              </div>
+            </div>
           ))}
         </Marquee>
       </div>

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ScrollProgress } from "@/components/layout/scroll-progress";
+import { FooterSection } from "@/components/sections/footer-section";
 import React from "react";
 
 const geistSans = Geist({
@@ -78,12 +79,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <ScrollProgress />
         {children}
+        <FooterSection />
         <script
           dangerouslySetInnerHTML={{
             __html: `try{

@@ -34,7 +34,6 @@ export function IntroductionSection() {
           </div>
         </div>
 
-        {/* Avatar */}
         <div className="shrink-0">
           <div className="relative w-40 h-40 md:w-48 md:h-48 lg:w-56 lg:h-56 group">
             <Image

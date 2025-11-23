@@ -27,7 +27,6 @@ export function EducationSection() {
       </motion.div>
 
       <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-start">
-        {/* Animation column - First on mobile, left on desktop */}
         <div className="order-1 md:order-1 flex justify-center">
           <AnimationLottie
             src={"/assets/lottie/education.json"}
@@ -35,7 +34,6 @@ export function EducationSection() {
             width="63%"
           />
         </div>
-        {/* Cards column - Second on mobile, right on desktop */}
         <div className="order-2 md:order-2">
           <div className="flex flex-col gap-4 md:gap-6">
             {education.map((education, index) => (
