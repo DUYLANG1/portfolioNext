@@ -24,13 +24,13 @@ export function ContactSection() {
     },
     {
       name: "LinkedIn",
-      url: "https://www.linkedin.com/in/vu-lang-887166224/",
+      url: "https://www.linkedin.com/in/vu-duy-lang/",
       icon: LinkedInIcon,
       description: "Professional profile",
     },
     {
       name: "Email",
-      url: "https://mail.google.com/mail/u/0/#inbox?compose=CllgCHrkVQNDdhZcMJVshVZQGPGlpNgrsKqblkZVDRqTMDHBGLgNfKQpSXsGTsHrvCQczCNdsXq",
+      url: "https://mail.google.com/mail/u/0/#inbox?compose=DmwnWrRpccpFVcKfsBmqQGcxNvVwSMsPdLfhHfpzfHpGzvvMxCccrMJBlWMdcvLSWSBrvmRQPrlq",
       icon: MailIcon,
       description: "Get in touch",
     },
