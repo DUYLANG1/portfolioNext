@@ -6,6 +6,7 @@ import { Badge } from "@/components/ui/badge";
 import { Navigation } from "@/components/layout/navigation";
 import { AnimationLottie } from "@/components/common/animation-lottie";
 import { motion } from "framer-motion";
+import Image from "next/image";
 
 import { PROJECT_LOTTIE } from "@/../public/assets/lottie/string/projectlottie";
 import { cn } from "@/lib/utils";
@@ -153,11 +154,12 @@ export function ProjectsGrid() {
                   {p.image && (
                     <div className="relative h-48 overflow-hidden">
                       <div className="absolute inset-0 bg-linear-to-r from-black/60 via-transparent to-transparent z-10" />
-                      <img
+                      <Image
                         src={p.image}
                         alt={p.title}
-                        className="object-cover w-full h-full transition-transform duration-500 group-hover:scale-110"
-                        loading="lazy"
+                        fill
+                        className="object-cover transition-transform duration-500 group-hover:scale-110"
+                        unoptimized
                       />
                       {/* Floating Badge */}
                       <div className="absolute top-4 left-4 z-20">

@@ -5,6 +5,7 @@ import { GlowCard } from "@/components/ui/glow-card";
 import { Badge } from "@/components/ui/badge";
 import { SectionHeader } from "@/components/ui/section-header";
 import { Globe, FolderGit2 } from "lucide-react";
+import Image from "next/image";
 
 // Modern GitHub Icon Component
 function GitHubIcon({ className = "h-4 w-4" }: { className?: string }) {
@@ -48,12 +49,13 @@ export function ProjectsSection() {
               className="border rounded-lg bg-background p-5 flex flex-col h-full hover:shadow-lg transition-shadow"
             >
               {p.image && (
-                <div className="h-36 rounded-md overflow-hidden border bg-muted mb-4">
-                  <img
+                <div className="relative h-36 rounded-md overflow-hidden border bg-muted mb-4">
+                  <Image
                     src={p.image}
                     alt={p.title}
-                    className="object-cover w-full h-full"
-                    loading="lazy"
+                    fill
+                    className="object-cover"
+                    unoptimized
                   />
                 </div>
               )}

@@ -4,6 +4,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { motion } from "framer-motion";
 import { AnimationLottie } from "../common/animation-lottie";
 import Marquee from "react-fast-marquee";
+import Image from "next/image";
 
 import { SectionHeader } from "@/components/ui/section-header";
 
@@ -66,11 +67,12 @@ export function SkillsSection() {
             >
               <CardContent className="p-4 md:p-6 flex flex-col items-center gap-3 md:gap-4">
                 <div className="relative w-12 h-12 md:w-16 md:h-16 flex items-center justify-center p-2 rounded-xl bg-background/50 group-hover:bg-background/80 transition-colors duration-300">
-                  <img
+                  <Image
                     src={icon(s)}
                     alt={`${s} logo`}
-                    className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-110 group-hover:rotate-3"
-                    loading="lazy"
+                    fill
+                    className="object-contain transition-transform duration-500 group-hover:scale-110 group-hover:rotate-3 relative! w-full! h-full!"
+                    unoptimized
                   />
                 </div>
                 <span className="text-xs md:text-sm font-bold tracking-wide group-hover:gradient-text-primary transition-all duration-300">
