@@ -12,7 +12,7 @@ export interface ProjectItem {
   description: string;
   github?: string;
   demo?: string;
-  image?: string; // path under /public
+  image?: string;
   tags?: string[];
 }
 
@@ -27,16 +27,16 @@ export interface EducationItem {
 export const experiences: ExperienceItem[] = [
   {
     id: 1,
-    title: "ReactJS Developer",
+    title: "Frontend Developer",
     company: "DNSE Securities JSC",
-    period: "August 2025",
+    period: "August 2025 - Present",
     current: true,
   },
   {
     id: 2,
-    title: "ReactJS Developer",
+    title: "Frontend Developer",
     company: "FPT Software",
-    period: "Nov 2024 - July 2025",
+    period: "Nov 2024 - June 2025",
   },
   {
     id: 3,
@@ -71,16 +71,16 @@ export const projects: ProjectItem[] = [
 export const education: EducationItem[] = [
   {
     id: 1,
-    school: "National Economics University - Vietnam",
-    degree: "Computer Science",
-    period: "2020 - 2024",
-    focus: "Software Engineering, Computer Theory",
-  },
-  {
-    id: 2,
     school: "Self Learning & Certifications",
     degree: "Online Courses / Workshops (Udemy, Coursera, etc.)",
     period: "Ongoing",
     focus: "Advanced React, Distributed Systems, Cloud Architecture",
+  },
+  {
+    id: 2,
+    school: "National Economics University - Vietnam",
+    degree: "Computer Science",
+    period: "2020 - 2024",
+    focus: "Software Engineering, Computer Theory",
   },
 ];

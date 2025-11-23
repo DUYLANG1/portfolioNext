@@ -54,7 +54,7 @@ export function ProjectsGrid() {
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.6, delay: 0.2 }}
             >
-              <span className="bg-gradient-to-r from-primary via-primary/80 to-primary bg-clip-text text-transparent">
+              <span className="bg-linear-to-r from-primary via-primary/80 to-primary bg-clip-text text-transparent">
                 All Projects
               </span>
               <motion.span
@@ -111,7 +111,7 @@ export function ProjectsGrid() {
                   {/* Image Section with Overlay */}
                   {p.image && (
                     <div className="relative h-48 overflow-hidden">
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent z-10" />
+                      <div className="absolute inset-0 bg-linear-to-r from-black/60 via-transparent to-transparent z-10" />
                       <img
                         src={p.image}
                         alt={p.title}
@@ -191,7 +191,7 @@ export function ProjectsGrid() {
                   </div>
 
                   {/* Bottom Gradient Line */}
-                  <div className="h-1 bg-gradient-to-r from-primary/50 via-primary to-primary/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  <div className="h-1 bg-linear-to-r from-primary/50 via-primary to-primary/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 </GlowCard>
               </motion.div>
             ))}

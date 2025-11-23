@@ -77,7 +77,7 @@ export function ContactSection() {
   return (
     <section
       id="contact"
-      className="py-24 px-4 bg-gradient-to-b from-background via-muted/30 to-background scroll-mt-32"
+      className="py-12 md:py-20 lg:py-24 px-4 bg-linear-to-b from-background via-muted/30 to-background scroll-mt-32"
     >
       <div className="max-w-6xl mx-auto">
         <motion.div
@@ -85,18 +85,18 @@ export function ContactSection() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className="text-center mb-20"
+          className="text-center mb-12 md:mb-16 lg:mb-20"
         >
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 gradient-text-primary">
+          <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-4 gradient-text-primary">
             Get In Touch
           </h2>
           <div className="w-24 h-1 bg-gradient-primary mx-auto rounded-full mb-6 glow-primary" />
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-base md:text-lg text-muted-foreground max-w-2xl mx-auto px-4">
             I&apos;m always interested in new opportunities and collaborations.
             Feel free to reach out if you&apos;d like to work together!
           </p>
         </motion.div>
-        <div className="grid md:grid-cols-3 gap-6 mb-16">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 mb-12 md:mb-16">
           {socialLinks.map((link, index) => {
             const IconComponent = link.icon;
             return (
@@ -151,7 +151,7 @@ export function ContactSection() {
           >
             {/* Render lottie from string by creating a Blob URL once */}
             <a
-              href="https://mail.google.com/mail/u/0/#inbox?compose=CllgCHrkVQNDdhZcMJVshVZQGPGlpNgrsKqblkZVDRqTMDHBGLgNfKQpSXsGTsHrvCQczCNdsXq"
+              href="https://mail.google.com/mail/u/0/#inbox?compose=DmwnWrRpccpFVcKfsBmqQGcxNvVwSMsPdLfhHfpzfHpGzvvMxCccrMJBlWMdcvLSWSBrvmRQPrlq"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Compose Email"

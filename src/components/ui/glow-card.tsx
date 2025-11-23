@@ -1,10 +1,12 @@
 "use client";
-import { motion } from "framer-motion";
+import { motion, HTMLMotionProps } from "framer-motion";
 import { cn } from "@/lib/utils";
 import React from "react";
 
-interface GlowCardProps extends React.ComponentProps<typeof motion.div> {
+interface GlowCardProps extends HTMLMotionProps<"div"> {
   hover?: boolean;
+  children?: React.ReactNode;
+  className?: string;
 }
 
 export const GlowCard = React.forwardRef<HTMLDivElement, GlowCardProps>(
@@ -16,8 +18,8 @@ export const GlowCard = React.forwardRef<HTMLDivElement, GlowCardProps>(
         transition={{ duration: 0.3, ease: "easeOut" }}
         className={cn(
           "relative rounded-xl card-enhanced group overflow-hidden",
-          "before:absolute before:inset-0 before:bg-gradient-to-r before:from-primary/20 before:via-accent/10 before:to-secondary/20 before:opacity-0 group-hover:before:opacity-100 before:transition-all before:duration-500",
-          "after:absolute after:inset-0 after:bg-gradient-to-br after:from-transparent after:via-primary/5 after:to-transparent after:opacity-0 group-hover:after:opacity-100 after:transition-all after:duration-300",
+          "before:absolute before:inset-0 before:bg-linear-to-r before:from-primary/20 before:via-accent/10 before:to-secondary/20 before:opacity-0 group-hover:before:opacity-100 before:transition-all before:duration-500",
+          "after:absolute after:inset-0 after:bg-linear-to-br after:from-transparent after:via-primary/5 after:to-transparent after:opacity-0 group-hover:after:opacity-100 after:transition-all after:duration-300",
           className
         )}
         {...props}
