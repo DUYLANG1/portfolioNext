@@ -6,6 +6,8 @@ import { Briefcase } from "lucide-react";
 import { AnimationLottie } from "@/components/common/animation-lottie";
 import { GlowCard } from "../ui/glow-card";
 
+import { SectionHeader } from "../ui/section-header";
+
 export function ExperienceSection() {
   return (
     <section className="py-12 md:py-20 lg:py-24 px-4" id="experience">
@@ -14,17 +16,12 @@ export function ExperienceSection() {
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
         viewport={{ once: true }}
-        className="mb-12 md:mb-16 text-center max-w-3xl mx-auto"
       >
-        <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-4 flex justify-center">
-          <div className="flex items-center gap-3">
-            <Briefcase className="hidden md:block h-6 w-6 md:h-8 md:w-8 gradient-text-primary" />
-            <div className="flex flex-col items-center">
-              <span className="gradient-text-primary">Experience</span>
-              <div className="w-24 h-1 bg-gradient-primary rounded-full glow-primary mt-2" />
-            </div>
-          </div>
-        </h2>
+        <SectionHeader
+          title="Experience"
+          icon={Briefcase}
+          className="max-w-3xl mx-auto"
+        />
       </motion.div>
 
       <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-start">

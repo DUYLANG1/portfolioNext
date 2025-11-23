@@ -5,6 +5,8 @@ import { motion } from "framer-motion";
 import { AnimationLottie } from "../common/animation-lottie";
 import Marquee from "react-fast-marquee";
 
+import { SectionHeader } from "@/components/ui/section-header";
+
 // Map skill names to actual file names present in /public/assets/skillsSvg
 const skillFiles: Record<string, string> = {
   HTML: "html.svg",
@@ -39,7 +41,6 @@ export function SkillsSection() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className="text-center mb-12 md:mb-16"
         >
           <AnimationLottie
             src="/assets/lottie/skills.json"
@@ -47,11 +48,7 @@ export function SkillsSection() {
             width="10%"
             loop
           />
-          <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-4 uppercase tracking-wider gradient-text-primary">
-            SKILLS
-          </h2>
-
-          <div className="w-24 h-1 bg-gradient-primary mx-auto rounded-full glow-primary" />
+          <SectionHeader title="Skills" />
         </motion.div>
 
         <Marquee

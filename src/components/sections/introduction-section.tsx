@@ -1,18 +1,21 @@
 "use client";
 import Image from "next/image";
 
+import { SectionHeader } from "@/components/ui/section-header";
+import { User } from "lucide-react";
+
 export function IntroductionSection() {
   return (
     <section className="py-12 md:py-20 lg:py-24 px-4">
       <div className="max-w-6xl mx-auto flex flex-col md:flex-row gap-8 md:gap-16 lg:gap-24 items-center">
         {/* Content */}
         <div className="flex-1 space-y-4 md:space-y-5 text-center md:text-left">
-          <div className="flex flex-col items-center md:items-start">
-            <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-2">
-              <span className="gradient-text-primary">About</span> Me
-            </h2>
-            <div className="sm:hidden w-24 h-1 bg-gradient-primary rounded-full glow-primary" />
-          </div>
+          <SectionHeader
+            title="About Me"
+            icon={User}
+            align="responsive"
+            className="mb-6 md:mb-8"
+          />
           <div className="space-y-4 text-base md:text-lg leading-relaxed text-muted-foreground">
             <p>
               <span className="hidden sm:block">

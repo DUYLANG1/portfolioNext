@@ -1,7 +1,9 @@
 "use client";
 import { motion } from "framer-motion";
-import { BookOpen, Dumbbell, Globe2 } from "lucide-react";
+import { BookOpen, Dumbbell, Globe2, Heart } from "lucide-react";
 import { AnimationLottie } from "../common/animation-lottie";
+
+import { SectionHeader } from "@/components/ui/section-header";
 
 const hobbies = [
   {
@@ -29,15 +31,12 @@ export function HobbiesSection() {
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
         viewport={{ once: true }}
-        className="text-center mb-12 md:mb-16"
       >
-        <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-4">
-          Hobbies & Interests
-        </h2>
-        <p className="text-sm md:text-base text-muted-foreground max-w-xl mx-auto px-4">
-          Apart from coding, some other activities that I love to do!
-        </p>
-        <div className="w-24 h-1 bg-primary mx-auto mt-6 rounded-full" />
+        <SectionHeader
+          title="Hobbies & Interests"
+          icon={Heart}
+          description="Apart from coding, some other activities that I love to do!"
+        />
       </motion.div>
       <div className="max-w-6xl mx-auto flex flex-col-reverse md:flex-row gap-8 md:gap-12">
         <div className="relative grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 max-w-4xl flex-1">

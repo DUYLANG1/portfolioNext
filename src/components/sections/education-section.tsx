@@ -5,6 +5,8 @@ import { GlowCard } from "@/components/ui/glow-card";
 import { GraduationCap } from "lucide-react";
 import { AnimationLottie } from "@/components/common/animation-lottie";
 
+import { SectionHeader } from "@/components/ui/section-header";
+
 export function EducationSection() {
   return (
     <section
@@ -16,17 +18,12 @@ export function EducationSection() {
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
         viewport={{ once: true }}
-        className="mb-12 md:mb-16 flex flex-col items-center max-w-3xl mx-auto"
       >
-        <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-4 flex justify-center">
-          <div className="flex items-center gap-3">
-            <GraduationCap className="hidden md:block h-6 w-6 md:h-8 md:w-8 gradient-text-primary" />
-            <div className="flex flex-col items-center">
-              <span className="gradient-text-primary">Education</span>
-              <div className="w-24 h-1 bg-gradient-primary rounded-full glow-primary mt-2" />
-            </div>
-          </div>
-        </h2>
+        <SectionHeader
+          title="Education"
+          icon={GraduationCap}
+          className="max-w-3xl mx-auto"
+        />
       </motion.div>
 
       <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-start">

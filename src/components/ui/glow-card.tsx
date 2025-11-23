@@ -18,8 +18,8 @@ export const GlowCard = React.forwardRef<HTMLDivElement, GlowCardProps>(
         transition={{ duration: 0.3, ease: "easeOut" }}
         className={cn(
           "relative rounded-xl card-enhanced group overflow-hidden",
-          "before:absolute before:inset-0 before:bg-linear-to-r before:from-primary/20 before:via-accent/10 before:to-secondary/20 before:opacity-0 group-hover:before:opacity-100 before:transition-all before:duration-500",
-          "after:absolute after:inset-0 after:bg-linear-to-br after:from-transparent after:via-primary/5 after:to-transparent after:opacity-0 group-hover:after:opacity-100 after:transition-all after:duration-300",
+          "before:absolute before:inset-0 before:bg-linear-to-r before:from-primary/20 before:via-accent/10 before:to-secondary/20 before:opacity-0 group-hover:before:opacity-100 before:transition-all before:duration-500 before:pointer-events-none",
+          "after:absolute after:inset-0 after:bg-linear-to-br after:from-transparent after:via-primary/5 after:to-transparent after:opacity-0 group-hover:after:opacity-100 after:transition-all after:duration-300 after:pointer-events-none",
           className
         )}
         {...props}

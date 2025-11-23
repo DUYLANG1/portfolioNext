@@ -8,6 +8,7 @@ import { AnimationLottie } from "@/components/common/animation-lottie";
 import { motion } from "framer-motion";
 
 import { PROJECT_LOTTIE } from "@/../public/assets/lottie/string/projectlottie";
+import { cn } from "@/lib/utils";
 
 const projectLottie = JSON.parse(PROJECT_LOTTIE);
 const blob = new Blob([JSON.stringify(projectLottie)], {
@@ -32,7 +33,38 @@ function GitHubIcon({ className = "h-6 w-6" }: { className?: string }) {
   );
 }
 
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
+} from "@/components/ui/dialog";
+import { useState } from "react";
+
 export function ProjectsGrid() {
+  const [selectedProject, setSelectedProject] = useState<{
+    title: string;
+    message: string;
+  } | null>(null);
+
+  const handleDemoClick = (project: (typeof projects)[0]) => {
+    if (project.title === "Portfolio (This Site)") {
+      setSelectedProject({
+        title: project.title,
+        message: "You currently see this here! 🎉",
+      });
+    } else if (project.title === "My Local Swapping Skills") {
+      setSelectedProject({
+        title: project.title,
+        message: "Project will be available soon! 🚀",
+      });
+    } else {
+      // Fallback for other projects if any
+      window.open(project.demo, "_blank");
+    }
+  };
+
   return (
     <div className="min-h-screen relative">
       {/* Background Pattern */}
@@ -98,7 +130,16 @@ export function ProjectsGrid() {
               </div>
             </motion.div>
           </motion.div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div
+            className={cn(
+              "grid gap-8",
+              projects.length === 1
+                ? "grid-cols-1 max-w-xl mx-auto"
+                : projects.length === 2
+                ? "grid-cols-1 md:grid-cols-2 max-w-4xl mx-auto"
+                : "grid-cols-1 md:grid-cols-2 lg:grid-cols-3"
+            )}
+          >
             {projects.map((p, i) => (
               <motion.div
                 key={`project-${i}`}
@@ -160,7 +201,7 @@ export function ProjectsGrid() {
                     )}
 
                     {/* Action Buttons */}
-                    <div className="flex gap-3 mt-auto">
+                    <div className="flex gap-3 mt-auto relative z-10">
                       {p.github && (
                         <motion.a
                           href={p.github}
@@ -175,17 +216,15 @@ export function ProjectsGrid() {
                         </motion.a>
                       )}
                       {p.demo && (
-                        <motion.a
-                          href={p.demo}
-                          target="_blank"
-                          rel="noopener noreferrer"
+                        <motion.button
+                          onClick={() => handleDemoClick(p)}
                           whileHover={{ scale: 1.05 }}
                           whileTap={{ scale: 0.95 }}
-                          className="flex items-center gap-2 px-4 py-2.5 rounded-lg border border-border bg-background/50 backdrop-blur-sm text-sm font-medium hover:bg-muted/80 transition-all duration-200 shadow-sm hover:shadow-md"
+                          className="flex items-center gap-2 px-4 py-2.5 rounded-lg border border-border bg-background/50 backdrop-blur-sm text-sm font-medium hover:bg-muted/80 transition-all duration-200 shadow-sm hover:shadow-md cursor-pointer"
                         >
                           <ExternalLink className="h-4 w-4" />
                           <span>Demo</span>
-                        </motion.a>
+                        </motion.button>
                       )}
                     </div>
                   </div>
@@ -213,6 +252,20 @@ export function ProjectsGrid() {
           </div>
         </div>
       </motion.footer>
+
+      <Dialog
+        open={!!selectedProject}
+        onOpenChange={() => setSelectedProject(null)}
+      >
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>{selectedProject?.title}</DialogTitle>
+            <DialogDescription className="text-base pt-2">
+              {selectedProject?.message}
+            </DialogDescription>
+          </DialogHeader>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }

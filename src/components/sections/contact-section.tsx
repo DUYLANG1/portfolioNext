@@ -6,7 +6,8 @@ import { motion } from "framer-motion";
 import { AnimationLottie } from "@/components/common/animation-lottie";
 import { CONTACT_LOTTIE } from "@/../public/assets/lottie/string/contactlottie";
 import React from "react";
-import { MapPin } from "lucide-react";
+import { MapPin, Send } from "lucide-react";
+import { SectionHeader } from "@/components/ui/section-header";
 
 function GitHubIcon({ className = "h-6 w-6" }: { className?: string }) {
   return (
@@ -85,16 +86,13 @@ export function ContactSection() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className="text-center mb-12 md:mb-16 lg:mb-20"
         >
-          <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-4 gradient-text-primary">
-            Get In Touch
-          </h2>
-          <div className="w-24 h-1 bg-gradient-primary mx-auto rounded-full mb-6 glow-primary" />
-          <p className="text-base md:text-lg text-muted-foreground max-w-2xl mx-auto px-4">
-            I&apos;m always interested in new opportunities and collaborations.
-            Feel free to reach out if you&apos;d like to work together!
-          </p>
+          <SectionHeader
+            title="Get In Touch"
+            icon={Send}
+            description="I'm always interested in new opportunities and collaborations. Feel free to reach out if you'd like to work together!"
+            className="lg:mb-20"
+          />
         </motion.div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 mb-12 md:mb-16">
           {socialLinks.map((link, index) => {

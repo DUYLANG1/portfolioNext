@@ -3,7 +3,8 @@ import { motion } from "framer-motion";
 import { projects } from "@/lib/data";
 import { GlowCard } from "@/components/ui/glow-card";
 import { Badge } from "@/components/ui/badge";
-import { Globe } from "lucide-react";
+import { SectionHeader } from "@/components/ui/section-header";
+import { Globe, FolderGit2 } from "lucide-react";
 
 // Modern GitHub Icon Component
 function GitHubIcon({ className = "h-4 w-4" }: { className?: string }) {
@@ -32,12 +33,8 @@ export function ProjectsSection() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className="text-center mb-12 md:mb-16"
         >
-          <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-4">
-            Projects
-          </h2>
-          <div className="w-24 h-1 bg-primary mx-auto rounded-full" />
+          <SectionHeader title="Projects" icon={FolderGit2} />
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6 lg:gap-8 auto-rows-fr">
