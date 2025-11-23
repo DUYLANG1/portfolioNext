@@ -40,15 +40,15 @@ export function HobbiesSection() {
       </motion.div>
       <div className="max-w-6xl mx-auto flex flex-col-reverse md:flex-row gap-8 md:gap-12">
         <div className="relative grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 max-w-4xl flex-1">
-          {hobbies.map((hobby, i) => (
+          {hobbies.map((hobby, index) => (
             <motion.div
               key={hobby.title}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: i * 0.1 }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
               viewport={{ once: true }}
               className={`p-5 md:p-6 rounded-2xl border bg-background hover:shadow-lg transition-all duration-500 min-h-[220px] md:h-64 group hover:-rotate-1 hover:bg-primary/5 hover:border-primary/30 ${
-                i === 0 ? "lg:mt-0" : i === 1 ? "lg:mt-12" : "lg:mt-24"
+                index === 0 ? "lg:mt-0" : index === 1 ? "lg:mt-12" : "lg:mt-24"
               }`}
             >
               <div className="flex flex-col gap-3 md:gap-4">

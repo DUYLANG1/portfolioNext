@@ -34,26 +34,26 @@ export function ExperienceSection() {
         />
         {/* Cards column */}
         <div className="flex flex-col gap-4 md:gap-6">
-          {experiences.map((exp, i) => (
-            <GlowCard key={exp.id}>
+          {experiences.map((experience, index) => (
+            <GlowCard key={experience.id}>
               <motion.div
-                key={exp.id}
+                key={experience.id}
                 initial={{ opacity: 0, y: 12 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: i * 0.1 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
                 viewport={{ once: true }}
               >
                 <div className="p-5 md:p-6 relative z-10">
                   <p className="text-xs md:text-sm gradient-text-secondary font-semibold mb-2">
-                    {exp.period}
+                    {experience.period}
                   </p>
                   <h3 className="text-base md:text-lg font-semibold mb-1 group-hover:gradient-text-primary transition-all duration-300">
-                    {exp.title}
+                    {experience.title}
                   </h3>
                   <p className="text-muted-foreground text-sm mb-3">
-                    {exp.company}
+                    {experience.company}
                   </p>
-                  {exp.current && (
+                  {experience.current && (
                     <span className="inline-block text-xs px-3 py-1 rounded-full bg-gradient-accent text-primary-foreground font-medium glow-secondary">
                       Current
                     </span>

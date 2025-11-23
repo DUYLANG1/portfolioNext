@@ -38,32 +38,32 @@ export function EducationSection() {
         {/* Cards column - Second on mobile, right on desktop */}
         <div className="order-2 md:order-2">
           <div className="flex flex-col gap-4 md:gap-6">
-            {education.map((ed, i) => (
+            {education.map((education, index) => (
               <GlowCard
-                key={ed.id}
+                key={education.id}
                 className="p-5 md:p-6 relative overflow-hidden"
               >
                 <motion.div
                   initial={{ opacity: 0, y: 12 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: i * 0.05 }}
+                  transition={{ duration: 0.5, delay: index * 0.05 }}
                   viewport={{ once: true }}
                 >
                   <p className="text-xs md:text-sm gradient-text-primary font-semibold mb-2">
-                    {ed.period}
+                    {education.period}
                   </p>
                   <h3 className="text-base md:text-lg font-semibold leading-snug mb-1 group-hover:gradient-text-primary transition-all duration-300">
-                    {ed.degree}
+                    {education.degree}
                   </h3>
                   <p className="text-muted-foreground text-sm mb-2">
-                    {ed.school}
+                    {education.school}
                   </p>
-                  {ed.focus && (
+                  {education.focus && (
                     <p className="text-xs text-muted-foreground/80">
                       <span className="gradient-text-accent font-medium">
                         Focus:
                       </span>{" "}
-                      {ed.focus}
+                      {education.focus}
                     </p>
                   )}
                 </motion.div>

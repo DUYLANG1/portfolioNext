@@ -1,6 +1,6 @@
 "use client";
-import { motion } from "framer-motion";
-import React from "react";
+import { motion, useAnimation } from "framer-motion";
+import { useEffect } from "react";
 
 const codeLines = [
   { n: 1, c: "const", cls: "text-blue-400" },
@@ -36,14 +36,19 @@ const codeLines = [
 ];
 
 export function CodeProfileSection() {
+  const controls = useAnimation();
+
+  useEffect(() => {
+    controls.start({ opacity: 1, y: 0 });
+  }, [controls]);
+
   return (
     <section className="hidden md:block py-12 md:py-20 lg:py-24 px-4">
       <div className="max-w-6xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          animate={controls}
           transition={{ duration: 0.6, delay: 0.2 }}
-          viewport={{ once: true }}
           className="relative max-w-3xl mx-auto rounded-xl border bg-background/60 backdrop-blur-sm shadow-lg p-6 md:p-8 font-mono text-sm overflow-x-auto"
         >
           <div className="absolute inset-0 pointer-events-none bg-linear-to-br from-primary/5 via-transparent to-primary/5 rounded-xl" />
@@ -62,7 +67,6 @@ export function CodeProfileSection() {
                   {l.n}
                 </span>
                 <span className={l.cls}>{l.c}</span>
-                {/* Add blinking cursor after last line */}
                 {i === codeLines.length - 1 && (
                   <span className="text-primary font-semibold animate-pulse ml-0.5">
                     |
