@@ -16,12 +16,8 @@ export function Navigation() {
   const [isDark, setIsDark] = useState(false);
 
   useEffect(() => {
-    // Get theme from localStorage or system preference
     const stored = localStorage.getItem("theme");
-    const systemDark = window.matchMedia(
-      "(prefers-color-scheme: dark)"
-    ).matches;
-    const shouldBeDark = stored === "dark" || (!stored && systemDark);
+    const shouldBeDark = stored === "dark";
 
     setIsDark(shouldBeDark);
     document.documentElement.classList.toggle("dark", shouldBeDark);
@@ -34,7 +30,6 @@ export function Navigation() {
     localStorage.setItem("theme", newTheme ? "dark" : "light");
   };
 
-  // Reset navigation state when pathname changes
   useEffect(() => {
     setIsNavigating(false);
   }, [pathname]);
@@ -51,7 +46,6 @@ export function Navigation() {
     if (pathname !== href) {
       setIsNavigating(true);
       router.push(href as any);
-      // Reset after a short delay to prevent stuck state
       setTimeout(() => setIsNavigating(false), 500);
     }
   };
@@ -75,7 +69,7 @@ export function Navigation() {
                 DUYLANG
               </motion.div>
             </Link>
-            
+
             {/* Desktop Navigation */}
             <div className="hidden md:flex gap-1 bg-background/50 p-1 rounded-xl border border-white/5 backdrop-blur-sm">
               <button
@@ -128,9 +122,21 @@ export function Navigation() {
               onClick={() => setIsNavigating(!isNavigating)}
             >
               <div className="w-6 h-5 relative flex flex-col justify-between">
-                <span className={`w-full h-0.5 bg-foreground rounded-full transition-all duration-300 ${isNavigating ? "rotate-45 translate-y-2" : ""}`} />
-                <span className={`w-full h-0.5 bg-foreground rounded-full transition-all duration-300 ${isNavigating ? "opacity-0" : ""}`} />
-                <span className={`w-full h-0.5 bg-foreground rounded-full transition-all duration-300 ${isNavigating ? "-rotate-45 -translate-y-2.5" : ""}`} />
+                <span
+                  className={`w-full h-0.5 bg-foreground rounded-full transition-all duration-300 ${
+                    isNavigating ? "rotate-45 translate-y-2" : ""
+                  }`}
+                />
+                <span
+                  className={`w-full h-0.5 bg-foreground rounded-full transition-all duration-300 ${
+                    isNavigating ? "opacity-0" : ""
+                  }`}
+                />
+                <span
+                  className={`w-full h-0.5 bg-foreground rounded-full transition-all duration-300 ${
+                    isNavigating ? "-rotate-45 -translate-y-2.5" : ""
+                  }`}
+                />
               </div>
             </button>
           </div>

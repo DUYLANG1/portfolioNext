@@ -15,7 +15,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://duylang.dev"),
+  metadataBase: new URL(
+    process.env.NEXT_PUBLIC_SITE_URL || "https://duylang.dev"
+  ),
   title: "DUYLANG - Full Stack Developer Portfolio",
   description:
     "Portfolio of DUYLANG - ReactJS Developer specializing in modern web development with React, Next.js, Node.js, and TypeScript.",
@@ -87,7 +89,7 @@ export default function RootLayout({
             __html: `try{
                     const s=localStorage.getItem('theme');
                     const d=document.documentElement;
-                    if(s==='dark'||(!s&&matchMedia('(prefers-color-scheme:dark)').matches)) 
+                    if(s==='dark') 
                     d.classList.add('dark');
                   } catch(e){}`,
           }}
